@@ -29,7 +29,9 @@ func NewUserLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserLog
 func (l *UserLoginLogic) UserLogin(req *types.LoginRequest) (resp *types.LoginReply, err error) {
 	// 从数据库中查询当前用户
 	user := new(models.UserBasic)
-	models.Engine.Where("name = ? AND password = ?", req.Name, helper.Md5(req.Password)).First(&user)
+	l.svcCtx.Engine.
+		Where("name = ? AND password = ?", req.Name, helper.Md5(req.Password)).
+		First(&user)
 	// has, err := models.Engine.Where("name = ? AND password = ?", req.Name, req.Password).Get(user)
 
 	if user.Id == 0 {

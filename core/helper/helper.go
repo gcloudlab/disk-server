@@ -11,13 +11,8 @@ import (
 	"strconv"
 	"strings"
 
-	uuid "github.com/satori/go.uuid"
 	"github.com/tencentyun/cos-go-sdk-v5"
 )
-
-func UUID() string {
-	return uuid.NewV4().String()
-}
 
 // CosUpload 上传文件到腾讯云
 func CosUpload(r *http.Request) (string, error) {

@@ -1,3 +1,6 @@
+/*
+定义路由、请求/响应参数
+*/
 service core-api {
 	// 用户登陆
 	@handler UserLogin
@@ -11,6 +14,9 @@ service core-api {
 	@handler MailCodeSendRegister
 	post /mail/code/send/register(MailCodeSendRequest) returns (MailCodeSendReply)
 	
+	// 用户注册
+	@handler UserRegister
+	post /user/register(UserRegisterRequest) returns (UserRegisterReply)
 }
 
 type LoginRequest {
@@ -38,3 +44,16 @@ type MailCodeSendRequest {
 type MailCodeSendReply {
 	Code string `json:"code"`
 }
+
+type UserRegisterRequest {
+	// 用户名
+	Name string `json:"name"`
+	// 密码
+	Password string `json:"password"`
+	// 邮箱
+	Email string `json:"email"`
+	// 验证码
+	Code string `json:"code"`
+}
+
+type UserRegisterReply {}

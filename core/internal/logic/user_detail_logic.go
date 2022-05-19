@@ -29,7 +29,9 @@ func (l *UserDetailLogic) UserDetail(req *types.UserDetailRequest) (resp *types.
 	resp = &types.UserDetailReply{}
 	user_detail := new(models.UserBasic)
 
-	models.Engine.Where("identity = ?", req.Identity).First(user_detail)
+	l.svcCtx.Engine.
+		Where("identity = ?", req.Identity).
+		First(user_detail)
 	if user_detail.Id == 0 {
 		return nil, errors.New("user not fonud")
 	}

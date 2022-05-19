@@ -2,6 +2,7 @@ package models
 
 import (
 	"gcloud/core/define"
+	"gcloud/core/internal/config"
 	"log"
 
 	"github.com/go-redis/redis/v8"
@@ -9,9 +10,6 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
-
-var Engine = Init("root:root@tcp(127.0.0.1:3306)/gcloud?charset=utf8mb4&parseTime=True&loc=Local")
-var RDB = InitRedis()
 
 /*
 	初始化数据库
@@ -30,10 +28,9 @@ func Init(dataSource string) *gorm.DB {
 /*
 	初始化redis
 */
-func InitRedis() *redis.Client {
+func InitRedis(c config.Config) *redis.Client {
 	return redis.NewClient(&redis.Options{
-		// Addr:     c.Redis.Addr,
-		Addr:     "localhost:6379",
+		Addr:     c.Redis.Addr,
 		Password: define.RedisPassword, // no password set
 		DB:       0,                    // use default DB
 	})
