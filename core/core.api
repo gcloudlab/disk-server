@@ -1,6 +1,16 @@
 service core-api {
-	@handler User
+	// 用户登陆
+	@handler UserLogin
 	post /user/login(LoginRequest) returns (LoginReply)
+	
+	// 用户详情
+	@handler UserDetail
+	get /user/detail(UserDetailRequest) returns (UserDetailReply)
+	
+	// 邮箱验证码发送
+	@handler MailCodeSendRegister
+	post /mail/code/send/register(MailCodeSendRequest) returns (MailCodeSendReply)
+	
 }
 
 type LoginRequest {
@@ -10,4 +20,21 @@ type LoginRequest {
 
 type LoginReply {
 	Token string `json:"token"`
+}
+
+type UserDetailRequest {
+	Identity string `json:"identity"`
+}
+
+type UserDetailReply {
+	Name  string `json:"name"`
+	Email string `json:"email"`
+}
+
+type MailCodeSendRequest {
+	Email string `json:"email"`
+}
+
+type MailCodeSendReply {
+	Code string `json:"code"`
 }

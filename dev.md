@@ -1,5 +1,12 @@
 ## 开发手册
 
+### 开发环境
+
+操作系统：Windows 11
+开发工具：VSCode、Navicat、Postman、Docker desktop
+
+### 常用命令
+
 ```shell
 cd core
 # 创建Api服务
@@ -10,3 +17,38 @@ go run core.go -f etc/core-api.yaml
 # 使用api文件生成代码
 goctl api go -api core.api -dir . -style go_zero
 ```
+
+### 环境变量
+
+邮箱密钥：MailPassword
+Redis 密码：RedisPassword
+
+代码详见：[define](/core/define/define.go)
+
+### 邮箱注册配置
+
+目标：开启 SMTP 服务并获取**密钥**
+
+示例：网易邮箱 (@163.com)
+
+### Redis(docker desktop)
+
+```shell
+# 安装并启动一个redis容器
+$ docker pull redis
+$ docker run --name gredis -p 6379:6379 redis --requirepass "123456"
+
+# 进入容器 (cmd)
+$ docker exec -it gredis bash
+# 进入容器 (bash)
+> redis-cli
+# 登陆
+127.0.0.1:6379> auth 123456
+# 查看版本
+127.0.0.1:6379> info
+
+```
+
+### 参考
+
+https://gorm.io/docs/query.html
