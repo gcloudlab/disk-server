@@ -32,6 +32,14 @@ Redis 密码：RedisPassword
 
 示例：网易邮箱 (@163.com)
 
+### 对象存储 COS 配置
+
+目标：注册并购买腾讯云 COS 服务，配置 SDK
+
+```shell
+$ go get -u github.com/tencentyun/cos-go-sdk-v5
+```
+
 ### Redis(docker desktop)
 
 ```shell
@@ -50,6 +58,10 @@ $ docker exec -it gredis bash
 
 ```
 
-### 参考
+### 参考文档
 
-https://gorm.io/docs/query.html
+Go: https://golang.org/
+gorm: https://gorm.io/docs
+COS: https://console.cloud.tencent.com/cos
+COS SDK: https://cloud.tencent.com/document/product/436/31215
+腾讯云密钥: https://console.cloud.tencent.com/cam/capi
