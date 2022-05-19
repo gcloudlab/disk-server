@@ -14,7 +14,7 @@ type UserClaim struct {
 	jwt.StandardClaims
 }
 
-var JwtKey = "cloud-disk-key"
+var JwtKey = "gcloud-key"
 var MailPassword = os.Getenv("MailPassword")
 
 // var RedisPassword = os.Getenv("RedisPassword")

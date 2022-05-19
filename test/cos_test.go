@@ -43,7 +43,7 @@ func TestFileUploadByReader(t *testing.T) {
 		},
 	})
 
-	key := "cloud-disk/exampleobject2.jpg"
+	key := "gloud/exampleobject2.jpg"
 
 	f, err := os.ReadFile("./img/1ff6a037-409d-445a-86cc-6dbca2b29c87.jpeg")
 	if err != nil {
@@ -67,7 +67,7 @@ func TestInitPartUpload(t *testing.T) {
 			SecretKey: define.TencentSecretKey,
 		},
 	})
-	key := "cloud-disk/exampleobject.jpeg"
+	key := "gloud/exampleobject.jpeg"
 	v, _, err := client.Object.InitiateMultipartUpload(context.Background(), key, nil)
 	if err != nil {
 		t.Fatal(err)
@@ -86,7 +86,7 @@ func TestPartUpload(t *testing.T) {
 			SecretKey: define.TencentSecretKey,
 		},
 	})
-	key := "cloud-disk/exampleobject.jpeg"
+	key := "gloud/exampleobject.jpeg"
 	UploadID := "16516751077a264ca9b5c8f560c1d1b5ea5e9d242dee047f62b02b4958491c0d90aa167d51"
 	f, err := os.ReadFile("0.chunk") // md5 : 108e92d35fe1695fbf29737d0b24561d
 	if err != nil {
@@ -113,7 +113,7 @@ func TestPartUploadComplete(t *testing.T) {
 			SecretKey: define.TencentSecretKey,
 		},
 	})
-	key := "cloud-disk/exampleobject.jpeg"
+	key := "gloud/exampleobject.jpeg"
 	UploadID := "16516751077a264ca9b5c8f560c1d1b5ea5e9d242dee047f62b02b4958491c0d90aa167d51"
 
 	opt := &cos.CompleteMultipartUploadOptions{}
