@@ -22,6 +22,7 @@ goctl api go -api core.api -dir . -style go_zero
 
 邮箱密钥：MailPassword
 Redis 密码：RedisPassword
+腾讯云对象存储: TencentSecretKey、TencentSecretID
 
 代码详见：[define](/core/define/define.go)
 
@@ -36,14 +37,14 @@ Redis 密码：RedisPassword
 ```shell
 # 安装并启动一个redis容器
 $ docker pull redis
-$ docker run --name gredis -p 6379:6379 redis --requirepass "123456"
+$ docker run --name gredis -p 6379:6379 redis --requirepass "redisPassword"
 
 # 进入容器 (cmd)
 $ docker exec -it gredis bash
 # 进入容器 (bash)
 > redis-cli
 # 登陆
-127.0.0.1:6379> auth 123456
+127.0.0.1:6379> auth redisPassword
 # 查看版本
 127.0.0.1:6379> info
 

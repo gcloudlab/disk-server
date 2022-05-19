@@ -2,6 +2,7 @@ package test
 
 import (
 	"context"
+	"gcloud/core/define"
 	"testing"
 	"time"
 
@@ -11,8 +12,8 @@ import (
 var ctx = context.Background()
 var rdb = redis.NewClient(&redis.Options{
 	Addr:     "localhost:6379",
-	Password: "123456", // no password set
-	DB:       0,        // use default DB
+	Password: define.RedisPassword, // no password set
+	DB:       0,                    // use default DB
 })
 
 func TestSetValue(t *testing.T) {

@@ -2,6 +2,10 @@ package logic
 
 import (
 	"context"
+	"errors"
+	"gcloud/core/define"
+	"gcloud/core/models"
+	"time"
 
 	"gcloud/core/helper"
 	"gcloud/core/internal/svc"
@@ -25,10 +29,30 @@ func NewMailCodeSendRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContex
 }
 
 func (l *MailCodeSendRegisterLogic) MailCodeSendRegister(req *types.MailCodeSendRequest) (resp *types.MailCodeSendReply, err error) {
-	// 发送邮件验证码
-	err = helper.SendMailCode(req.Email, "233434")
+	// 1 邮箱未注册
+	var count int64
+	// 1.1 查询当前邮箱是否在数据库中
+	err = models.Engine.
+		Table("user_basic").
+		Where("email = ?", req.Email).
+		Count(&count).Error
+	if err != nil {
+		return
+	}
+	if count > 0 {
+		err = errors.New("邮箱已注册")
+		return
+	}
+
+	// 1.2 生成验证码
+	code := helper.RandCode()
+	// 1.3 存储验证码 -> redis
+	models.RDB.Set(l.ctx, req.Email, code, time.Second*time.Duration(define.CodeExpire))
+	// 1.4 发送邮件验证码
+	err = helper.SendMailCode(req.Email, code)
 	if err != nil {
 		return nil, err
 	}
+
 	return
 }

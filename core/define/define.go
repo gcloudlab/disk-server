@@ -16,7 +16,9 @@ type UserClaim struct {
 
 var JwtKey = "cloud-disk-key"
 var MailPassword = os.Getenv("MailPassword")
-var RedisPassword = os.Getenv("RedisPassword")
+
+// var RedisPassword = os.Getenv("RedisPassword")
+var RedisPassword = "123456"
 
 // CodeLength 验证码长度
 var CodeLength = 6
