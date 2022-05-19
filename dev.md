@@ -65,3 +65,11 @@ gorm: https://gorm.io/docs
 COS: https://console.cloud.tencent.com/cos
 COS SDK: https://cloud.tencent.com/document/product/436/31215
 腾讯云密钥: https://console.cloud.tencent.com/cam/capi
+
+### 其他
+
+## 关于本项目中为何会包含 `package.json` 文件
+
+- 因为我用了 [`der-cli`](https://der-cli.vercel.app) 工具，需要 `package.json` 文件作版本控制
+- 没错 `der-cli` 是我写的一个脚手架工具，但是配置文件依赖的是 `package.json`, 所以你把这文件当成配置文件即可(.config)
+- 我是一只可怜又无助的小前端

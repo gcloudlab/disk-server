@@ -32,11 +32,11 @@ func (l *UserRegisterLogic) UserRegister(req *types.UserRegisterRequest) (resp *
 	if err != nil {
 		return nil, errors.New("无效验证码")
 	}
-
 	if code != req.Code {
 		err = errors.New("验证码错误")
 		return
 	}
+
 	// 判断用户名是否已存在
 	var count int64
 	err = l.svcCtx.Engine.
@@ -50,6 +50,7 @@ func (l *UserRegisterLogic) UserRegister(req *types.UserRegisterRequest) (resp *
 		err = errors.New("用户名已存在")
 		return
 	}
+
 	// 入库
 	user := &models.UserBasic{
 		Identity: helper.UUID(),

@@ -32,7 +32,41 @@ service core-api {
 	// 用户文件关联存储
 	@handler UserRepositorySave
 	post /user/repository/save(UserRepositorySaveRequest) returns (UserRepositorySaveReply)
+	
+	// 用户文件列表
+	@handler UserFileList
+	get /user/file/list(UserFileListRequest) returns (UserFileListReply)
 }
+
+type UserFileListRequest {
+	Id   int64 `json:"id,optional"`
+	Page int   `json:"page,optional"`
+	Size int   `json:"size,optional"`
+}
+
+type UserFileListReply {
+	Count int64       `json:"count"`
+	List  []*UserFile `json:"list"`
+}
+
+type UserFile {
+	Id                 int64  `json:"id"`
+	Identity           string `json:"identity"`
+	RepositoryIdentity string `json:"repository_identity"`
+	Name               string `json:"name"`
+	Size               int64  `json:"size"`
+	Ext                string `json:"ext"`
+	Path               string `json:"path"`
+}
+
+type UserRepositorySaveRequest {
+	RepositoryIdentity string `json:"repositoryIdentity"`
+	ParentId           int64  `json:"parentId"`
+	Ext                string `json:"ext"`
+	Name               string `json:"name"`
+}
+
+type UserRepositorySaveReply {}
 
 type FileUploadRequest {
 	Hash string `json:"hash,optional"`
@@ -47,15 +81,6 @@ type FileUploadReply {
 	Ext      string `json:"ext"`
 	Name     string `json:"name"`
 }
-
-type UserRepositorySaveRequest {
-	RepositoryIdentity string `json:"repositoryIdentity"`
-	ParentId           int64  `json:"parentId"`
-	Ext                string `json:"ext"`
-	Name               string `json:"name"`
-}
-
-type UserRepositorySaveReply {}
 
 /****************** User model ***********************/
 
