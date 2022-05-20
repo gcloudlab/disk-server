@@ -63,6 +63,17 @@ service core-api {
 	// 分享 - 分享资源保存
 	@handler ShareBasicSave
 	post /share/basic/save(ShareBasicSaveRequest) returns (ShareBasicSaveReply)
+	
+	// 刷新token
+	@handler RefreshAuthorization
+	post /refresh/authorization(RefreshAuthorizationRequest) returns (RefreshAuthorizationReply)
+}
+
+type RefreshAuthorizationRequest {}
+
+type RefreshAuthorizationReply {
+	Token        string `json:"token"`
+	RefreshToken string `json:"refresh_token"`
 }
 
 type ShareBasicSaveRequest {
@@ -180,7 +191,8 @@ type LoginRequest {
 }
 
 type LoginReply {
-	Token string `json:"token"`
+	Token        string `json:"token"`
+	RefreshToken string `json:"refresh_token"`
 }
 
 type UserDetailRequest {

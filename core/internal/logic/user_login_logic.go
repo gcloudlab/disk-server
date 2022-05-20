@@ -3,6 +3,7 @@ package logic
 import (
 	"context"
 	"errors"
+	"gcloud/core/define"
 
 	"gcloud/core/helper"
 	"gcloud/core/internal/svc"
@@ -38,13 +39,20 @@ func (l *UserLoginLogic) UserLogin(req *types.LoginRequest) (resp *types.LoginRe
 		return nil, errors.New("用户名或密码错误")
 	}
 
-	// 生成token
-	token, err := helper.GenerateToken(user.Id, user.Identity, user.Name, 10000)
+	// 生成普通 token1
+	token, err := helper.GenerateToken(user.Id, user.Identity, user.Name, define.TokenExpire)
+	if err != nil {
+		return nil, err
+	}
+	// 生成用于刷新 token1 的 token2
+	// 当 token1 失效后，使用 token2 生成新 token1
+	refreshToken, err := helper.GenerateToken(user.Id, user.Identity, user.Name, define.RefreshTokenExpire)
 	if err != nil {
 		return nil, err
 	}
 
 	resp = new(types.LoginReply)
 	resp.Token = token
+	resp.RefreshToken = refreshToken
 	return
 }

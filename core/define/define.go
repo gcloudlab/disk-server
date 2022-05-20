@@ -38,4 +38,4 @@ var PageSize = 20
 var Datetime = "2000-01-01 00:00:01"
 
 var TokenExpire = 36000
-var RefreshTokenExpire = 7200
+var RefreshTokenExpire = 72000
