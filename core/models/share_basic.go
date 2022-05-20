@@ -1,6 +1,10 @@
 package models
 
-import "time"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 type ShareBasic struct {
 	Id                     int
@@ -10,9 +14,9 @@ type ShareBasic struct {
 	RepositoryIdentity     string
 	ExpiredTime            int
 	ClickNum               int
-	CreatedAt              time.Time `xorm:"created"`
-	UpdatedAt              time.Time `xorm:"updated"`
-	DeletedAt              time.Time `xorm:"deleted"`
+	CreatedAt              time.Time      `xorm:"created"`
+	UpdatedAt              time.Time      `xorm:"updated"`
+	DeletedAt              gorm.DeletedAt `xorm:"deleted"`
 }
 
 func (table ShareBasic) TableName() string {

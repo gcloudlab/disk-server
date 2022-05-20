@@ -1,6 +1,10 @@
 package models
 
-import "time"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 type RepositoryPool struct {
 	Id        int
@@ -10,9 +14,9 @@ type RepositoryPool struct {
 	Ext       string
 	Size      int64
 	Path      string
-	CreatedAt time.Time `xorm:"created"`
-	UpdatedAt time.Time `xorm:"updated"`
-	DeletedAt time.Time `xorm:"deleted"`
+	CreatedAt time.Time      `xorm:"created"`
+	UpdatedAt time.Time      `xorm:"updated"`
+	DeletedAt gorm.DeletedAt `xorm:"deleted"`
 }
 
 func (table RepositoryPool) TableName() string {

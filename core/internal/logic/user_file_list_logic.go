@@ -60,7 +60,7 @@ func (l *UserFileListLogic) UserFileList(req *types.UserFileListRequest, userIde
 	// 查询总数
 	err = l.svcCtx.Engine.
 		Table("user_repository").
-		Where("parent_id = ? AND user_identity = ? ", req.Id, userIdentity).
+		Where("parent_id = ? AND user_identity = ? AND deleted_at IS NULL", req.Id, userIdentity).
 		Count(&cnt).Error
 	if err != nil {
 		return

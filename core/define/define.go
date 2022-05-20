@@ -35,7 +35,7 @@ var CosFolderName = "gcloud"
 // PageSize 分页的默认参数
 var PageSize = 20
 
-var Datetime = "2006-01-02 15:04:05"
+var Datetime = "2000-01-01 00:00:01"
 
 var TokenExpire = 3600
 var RefreshTokenExpire = 7200

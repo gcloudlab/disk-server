@@ -1,6 +1,10 @@
 package models
 
-import "time"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 type UserBasic struct {
 	Id        int
@@ -8,9 +12,9 @@ type UserBasic struct {
 	Name      string
 	Password  string
 	Email     string
-	CreatedAt time.Time `xorm:"created"`
-	UpdatedAt time.Time `xorm:"updated"`
-	DeletedAt time.Time `xorm:"deleted"`
+	CreatedAt time.Time      `xorm:"created"`
+	UpdatedAt time.Time      `xorm:"updated"`
+	DeletedAt gorm.DeletedAt `xorm:"deleted"`
 }
 
 func (table UserBasic) TableName() string {
