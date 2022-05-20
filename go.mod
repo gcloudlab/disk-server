@@ -10,7 +10,6 @@ require (
 	github.com/satori/go.uuid v1.2.0
 	github.com/tencentyun/cos-go-sdk-v5 v0.7.34
 	github.com/zeromicro/go-zero v1.3.1
-	xorm.io/xorm v1.2.5
 )
 
 require (
@@ -52,7 +51,6 @@ require (
 	google.golang.org/grpc v1.44.0 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gorm.io/driver/mysql v1.3.3 // indirect
-	gorm.io/gorm v1.23.5 // indirect
-	xorm.io/builder v0.3.9 // indirect
+	gorm.io/driver/mysql v1.3.3
+	gorm.io/gorm v1.23.5
 )

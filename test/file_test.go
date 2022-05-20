@@ -13,31 +13,39 @@ import (
 // 分片的大小
 //const chunkSize = 100 * 1024 * 1024 // 100MB
 const chunkSize = 1024 * 1024 // 1MB
+
 // 文件分片
 func TestGenerateChunkFile(t *testing.T) {
+	// 文件信息
 	fileInfo, err := os.Stat("img/1ff6a037-409d-445a-86cc-6dbca2b29c87.jpeg")
 	if err != nil {
 		t.Fatal(err)
 	}
 	// 分片的个数
 	chunkNum := math.Ceil(float64(fileInfo.Size()) / float64(chunkSize))
+
+	// 打开文件
 	myFile, err := os.OpenFile("img/1ff6a037-409d-445a-86cc-6dbca2b29c87.jpeg", os.O_RDONLY, 0666)
 	if err != nil {
 		t.Fatal(err)
 	}
-	b := make([]byte, chunkSize)
+
+	b := make([]byte, chunkSize) // 分片的数组
 	for i := 0; i < int(chunkNum); i++ {
 		// 指定读取文件的起始位置
 		myFile.Seek(int64(i*chunkSize), 0)
+		// 如果分片大小大于文件的大小，则读取文件的剩余大小
 		if chunkSize > fileInfo.Size()-int64(i*chunkSize) {
 			b = make([]byte, fileInfo.Size()-int64(i*chunkSize))
 		}
 		myFile.Read(b)
 
+		// 存放分片的文件
 		f, err := os.OpenFile("./"+strconv.Itoa(i)+".chunk", os.O_CREATE|os.O_WRONLY, os.ModePerm)
 		if err != nil {
 			t.Fatal(err)
 		}
+
 		f.Write(b)
 		f.Close()
 	}
@@ -50,10 +58,12 @@ func TestMergeChunkFile(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+
 	fileInfo, err := os.Stat("test.mp4")
 	if err != nil {
 		t.Fatal(err)
 	}
+
 	// 分片的个数
 	chunkNum := math.Ceil(float64(fileInfo.Size()) / float64(chunkSize))
 	for i := 0; i < int(chunkNum); i++ {
