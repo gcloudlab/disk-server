@@ -29,17 +29,30 @@ service core-api {
 	@handler FileUpload
 	post /file/upload(FileUploadRequest) returns (FileUploadReply)
 	
-	// 用户文件关联存储
+	// 用户- 文件关联存储
 	@handler UserRepositorySave
 	post /user/repository/save(UserRepositorySaveRequest) returns (UserRepositorySaveReply)
 	
-	// 用户文件列表
+	// 用户 - 文件列表
 	@handler UserFileList
 	get /user/file/list(UserFileListRequest) returns (UserFileListReply)
 	
-	// 用户文件名修改
+	// 用户 - 文件名修改
 	@handler UserFileNameUpdate
 	post /user/file/name/update(UserFileNameUpdateRequest) returns (UserFileNameUpdateReply)
+	
+	// 用户 - 文件夹创建
+	@handler UserFolderCreate
+	post /user/folder/create(UserFolderCreateRequest) returns (UserFolderCreateReply)
+}
+
+type UserFolderCreateRequest {
+	ParentId int64  `json:"parent_id"`
+	Name     string `json:"name"`
+}
+
+type UserFolderCreateReply {
+	Identity string `json:"identity"`
 }
 
 type UserFileNameUpdateRequest {
