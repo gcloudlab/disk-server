@@ -1,4 +1,4 @@
-<p align="center"><img width="60%" align="center" src="https://fastly.jsdelivr.net/gh/yesmore/img/gcloud/gcloud.png"></p>
+<p align="center"><img width="50%" align="center" src="https://fastly.jsdelivr.net/gh/yesmore/img/gcloud/gcloud-log.png"></p>
 
 <p align="center">😎一个使用 Go 开发的开源云盘</p>
 
