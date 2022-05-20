@@ -1,12 +1,19 @@
-## GCloud
+<img width="80%" align="middle" src="https://fastly.jsdelivr.net/gh/yesmore/img/gcloud/gcloud.png">
 
-一个使用 Go 开发的开源云盘.
+<p align="center">😎一个使用 Go 开发的开源云盘</p>
 
-### 功能列表
+<div style='' align="center">
+    <img src="https://img.shields.io/github/stars/yesmore/gcloud.svg?logo=github&style=flat-square" alt="star"/>
+	<img src="https://img.shields.io/github/license/yesmore/gcloud?style=flat-square" alt="GPL"/>
+</div>
+
+
+
+## 功能列表
 
 ## 使用说明
 
-## 开发手册
+## 开发者须知
 
 ### 技术架构
 
