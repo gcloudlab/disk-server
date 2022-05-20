@@ -37,7 +37,7 @@ service core-api {
 	@handler UserFileList
 	get /user/file/list(UserFileListRequest) returns (UserFileListReply)
 	
-	// 用户 - 文件名修改
+	// 用户 - 文件重命名
 	@handler UserFileNameUpdate
 	post /user/file/name/update(UserFileNameUpdateRequest) returns (UserFileNameUpdateReply)
 	
@@ -52,6 +52,19 @@ service core-api {
 	// 用户 - 文件移动
 	@handler UserFileMove
 	put /user/file/move(UserFileMoveRequest) returns (UserFileMoveReply)
+	
+	// 分享 - 创建分享记录
+	@handler ShareBasicCreate
+	post /share/basic/create(ShareBasicCreateRequest) returns (ShareBasicCreateReply)
+}
+
+type ShareBasicCreateRequest {
+	RepositoryIdentity string `json:"repository_identity"`
+	ExpiredTime        int    `json:"expired_time"`
+}
+
+type ShareBasicCreateReply {
+	Identity string `json:"identity"`
 }
 
 type UserFileMoveRequest {
