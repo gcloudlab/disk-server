@@ -43,7 +43,7 @@ func TestFileUploadByReader(t *testing.T) {
 		},
 	})
 
-	key := "gloud/exampleobject2.jpg"
+	key := "gcloud/exampleobject2.jpg"
 
 	f, err := os.ReadFile("./img/1ff6a037-409d-445a-86cc-6dbca2b29c87.jpeg")
 	if err != nil {
@@ -67,12 +67,13 @@ func TestInitPartUpload(t *testing.T) {
 			SecretKey: define.TencentSecretKey,
 		},
 	})
-	key := "gloud/exampleobject.jpeg"
+	key := "gcloud/exampleobject.jpeg"
 	v, _, err := client.Object.InitiateMultipartUpload(context.Background(), key, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
-	UploadID := v.UploadID // 16516751077a264ca9b5c8f560c1d1b5ea5e9d242dee047f62b02b4958491c0d90aa167d51
+
+	UploadID := v.UploadID // 1653047261484591ac09d1e16e24bc593154fe610f19aa6d43d475b1e3cbdc030bbc6519af
 	fmt.Println(UploadID)
 }
 
@@ -86,12 +87,14 @@ func TestPartUpload(t *testing.T) {
 			SecretKey: define.TencentSecretKey,
 		},
 	})
-	key := "gloud/exampleobject.jpeg"
-	UploadID := "16516751077a264ca9b5c8f560c1d1b5ea5e9d242dee047f62b02b4958491c0d90aa167d51"
+
+	key := "gcloud/exampleobject.jpeg"
+	UploadID := "1653047261484591ac09d1e16e24bc593154fe610f19aa6d43d475b1e3cbdc030bbc6519af"
 	f, err := os.ReadFile("0.chunk") // md5 : 108e92d35fe1695fbf29737d0b24561d
 	if err != nil {
 		t.Fatal(err)
 	}
+
 	// opt可选
 	resp, err := client.Object.UploadPart(
 		context.Background(), key, UploadID, 1, bytes.NewReader(f), nil,
@@ -99,8 +102,8 @@ func TestPartUpload(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	PartETag := resp.Header.Get("ETag")
-	fmt.Println(PartETag)
+	PartETag := resp.Header.Get("ETag") // md5
+	fmt.Println(PartETag)               // 108e92d35fe1695fbf29737d0b24561d
 }
 
 // 分片上传完成
@@ -113,8 +116,8 @@ func TestPartUploadComplete(t *testing.T) {
 			SecretKey: define.TencentSecretKey,
 		},
 	})
-	key := "gloud/exampleobject.jpeg"
-	UploadID := "16516751077a264ca9b5c8f560c1d1b5ea5e9d242dee047f62b02b4958491c0d90aa167d51"
+	key := "gcloud/exampleobject.jpeg"
+	UploadID := "1653047261484591ac09d1e16e24bc593154fe610f19aa6d43d475b1e3cbdc030bbc6519af"
 
 	opt := &cos.CompleteMultipartUploadOptions{}
 	opt.Parts = append(opt.Parts, cos.Object{

@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"gcloud/core/helper"
 	"gcloud/core/models"
 
 	"gcloud/core/internal/svc"
@@ -28,17 +29,23 @@ func (l *FileUploadPrepareLogic) FileUploadPrepare(req *types.FileUploadPrepareR
 	rp := new(models.RepositoryPool)
 	resp = new(types.FileUploadPrepareReply)
 
-	err = l.svcCtx.Engine.
+	l.svcCtx.Engine.
 		Where("hash = ?", req.Md5).
-		First(rp).Error
-	if err != nil {
-		return
-	}
+		First(rp)
+	// if err != nil {
+	// 	return
+	// }
 	if rp.Id != 0 {
 		// 文件已存在，秒传成功
 		resp.Identity = rp.Identity
 	} else {
-		// 文件不存在，获取文件的 UploadID，执行分片上传
+		// 文件不存在，获取文件的 UploadID、key，执行分片上传
+		key, uploadId, err := helper.CosInitPart(req.Ext)
+		if err != nil {
+			return nil, err
+		}
+		resp.Key = key
+		resp.UploadId = uploadId
 	}
 
 	return

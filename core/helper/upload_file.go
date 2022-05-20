@@ -60,6 +60,7 @@ func CosInitPart(ext string) (string, string, error) {
 	if err != nil {
 		return "", "", err
 	}
+
 	return key, v.UploadID, nil
 }
 
@@ -73,16 +74,19 @@ func CosPartUpload(r *http.Request) (string, error) {
 			SecretKey: define.TencentSecretKey,
 		},
 	})
+
 	key := r.PostForm.Get("key")
 	UploadID := r.PostForm.Get("upload_id")
 	partNumber, err := strconv.Atoi(r.PostForm.Get("part_number"))
 	if err != nil {
 		return "", err
 	}
+
 	f, _, err := r.FormFile("file")
 	if err != nil {
 		return "", err
 	}
+	// fix: 分片上传时bug
 	buf := bytes.NewBuffer(nil)
 	io.Copy(buf, f)
 
@@ -93,6 +97,7 @@ func CosPartUpload(r *http.Request) (string, error) {
 	if err != nil {
 		return "", err
 	}
+
 	return strings.Trim(resp.Header.Get("ETag"), "\""), nil
 }
 
