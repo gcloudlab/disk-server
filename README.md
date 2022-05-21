@@ -1,4 +1,4 @@
-<p align="center"><img width="70%" align="center" src="https://fastly.jsdelivr.net/gh/yesmore/img/gcloud/gcloud-log.png"></p>
+<p align="center"><img width="60%" align="center" src="https://fastly.jsdelivr.net/gh/yesmore/img/gcloud/gcloud-log.png"></p>
 
 <p align="center">😎 简单 & 免费的开源云盘</p>
 
@@ -6,6 +6,7 @@
     <img src="https://img.shields.io/github/stars/yesmore/gcloud.svg?logo=github&style=flat-square" alt="star"/>
 	<img src="https://img.shields.io/github/license/yesmore/gcloud?style=flat-square" alt="GPL"/>
 </div>
+
 ## 关于 GCloud
 
 > 项目开发中
