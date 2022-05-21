@@ -32,9 +32,7 @@ func (l *FileUploadPrepareLogic) FileUploadPrepare(req *types.FileUploadPrepareR
 	l.svcCtx.Engine.
 		Where("hash = ?", req.Md5).
 		First(rp)
-	// if err != nil {
-	// 	return
-	// }
+
 	if rp.Id != 0 {
 		// 文件已存在，秒传成功
 		resp.Identity = rp.Identity
