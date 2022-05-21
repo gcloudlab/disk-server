@@ -27,12 +27,12 @@ $ goctl api go -api core.api -dir . -style go_zero
 
 ### 环境变量
 
-| 变量名           | 类型   | 备注          |
-| ---------------- | ------ | ------------- |
-| MailPassword     | string | 邮箱密钥      |
-| RedisPassword    | string | Redis 密码    |
-| TencentSecretKey | string | COS SecretKey |
-| TencentSecretID  | string | COS SecretID  |
+| 变量名           | 类型   | 备注                      |
+| ---------------- | ------ | ------------------------- |
+| MailPassword     | string | 邮箱授权码（注册服务）    |
+| RedisPassword    | string | Redis 密码（验证码）      |
+| TencentSecretKey | string | COS SecretKey（文件上传） |
+| TencentSecretID  | string | COS SecretID（文件上传）  |
 
 代码详见：[define.go](/core/define/define.go)
 
@@ -44,17 +44,27 @@ $ goctl api go -api core.api -dir . -style go_zero
 
 示例：网易邮箱 (@163.com)
 
+步骤：
+
+1.注册网易邮箱账号：https://email.163.com/；
+
+2.进入控制台点击顶部导航栏中的“**设置**”，弹出下拉菜单中点击“**POP3/SMTP/IMAP**”项；
+
+3.开启服务 “**IMAP/SMTP服务**”，并将获取到的授权码保存在主机环境变量中即可。
+
 
 
 ### 对象存储 COS 配置
 
 目标：注册并购买腾讯云 COS 服务，配置 SDK
 
-[1]: https://console.cloud.tencent.com/cam/capi	"腾讯云密钥申请"
+步骤：
 
+1.购买对象存储服务：https://console.cloud.tencent.com/cos
 
+2.生成腾讯云密钥：https://console.cloud.tencent.com/cam/capi
 
-
+2.COS SDK 开发文档： https://cloud.tencent.com/document/product/436/31215 
 
 ```shell
 $ go get -u github.com/tencentyun/cos-go-sdk-v5
@@ -95,12 +105,9 @@ $ docker exec -it gredis bash
 
 ## 参考文档
 
-Go: https://golang.org/
+[1]: https://golang.org/	"Go语言官网"
+[2]: https://gorm.io/docs	"gorm"
+[3]: https://console.cloud.tencent.com/cos	"COS控制台"
+[4]: https://cloud.tencent.com/document/product/436/31215	"COS开发文档"
+[5]: https://console.cloud.tencent.com/cam/capi	"腾讯云密钥"
 
-gorm: https://gorm.io/docs
-
-COS: https://console.cloud.tencent.com/cos
-
-COS SDK: https://cloud.tencent.com/document/product/436/31215
-
-腾讯云密钥: https://console.cloud.tencent.com/cam/capi
