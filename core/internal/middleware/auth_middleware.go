@@ -27,6 +27,7 @@ func (m *AuthMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 
+		// 注入用户信息到上下文
 		r.Header.Set("UserId", string(rune(uc.Id)))
 		r.Header.Set("UserName", uc.Name)
 		r.Header.Set("UserIdentity", uc.Identity)

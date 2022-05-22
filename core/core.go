@@ -20,7 +20,7 @@ func main() {
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 
-	ctx := svc.NewServiceContext(c)
+	ctx := svc.NewServiceContext(c) // 注入全局上下文
 	server := rest.MustNewServer(c.RestConf)
 	defer server.Stop()
 

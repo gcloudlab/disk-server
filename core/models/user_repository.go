@@ -14,9 +14,9 @@ type UserRepository struct {
 	RepositoryIdentity string
 	Ext                string
 	Name               string
-	CreatedAt          time.Time      `xorm:"created"`
-	UpdatedAt          time.Time      `xorm:"updated"`
-	DeletedAt          gorm.DeletedAt `xorm:"deleted"`
+	CreatedAt          time.Time      `gorm:"created"`
+	UpdatedAt          time.Time      `gorm:"updated"`
+	DeletedAt          gorm.DeletedAt `gorm:"deleted"`
 }
 
 func (table UserRepository) TableName() string {

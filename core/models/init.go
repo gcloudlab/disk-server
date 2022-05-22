@@ -15,7 +15,6 @@ import (
 	初始化数据库
 */
 func Init(dataSource string) *gorm.DB {
-	// engine, err := xorm.NewEngine("mysql", dataSource)
 	engine, err := gorm.Open(mysql.Open(dataSource), &gorm.Config{})
 	if err != nil {
 		log.Printf("Xorm New Engine Error:%v", err)

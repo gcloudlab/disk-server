@@ -11,12 +11,13 @@ import (
 )
 
 type ServiceContext struct {
-	Config config.Config
-	Engine *gorm.DB
-	RDB    *redis.Client
-	Auth   rest.Middleware
+	Config config.Config   // 配置 (core-api.yaml)
+	Engine *gorm.DB        // orm
+	RDB    *redis.Client   // Redis
+	Auth   rest.Middleware //
 }
 
+// 上下文
 func NewServiceContext(c config.Config) *ServiceContext {
 	return &ServiceContext{
 		Config: c,
