@@ -38,8 +38,9 @@ func (l *MailCodeSendRegisterLogic) MailCodeSendRegister(req *types.MailCodeSend
 	if err != nil {
 		return
 	}
+
 	if count > 0 {
-		err = errors.New("邮箱已注册")
+		err = errors.New("registered")
 		return
 	}
 

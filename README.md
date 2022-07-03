@@ -20,13 +20,13 @@
 - ✨ 纯 Go 开发（后端）
 - 🎨 **不限速**
 
-详见 [API](/dev/API.md).
+详见文档 [API](/docs/API.md).
 
 ## 开发者须知
 
 ### 技术架构
 
-- 后台：Gin、go-zero
+- 后台：go-zero(Monolithic Service)
 - 数据库：MySQL、Redis
 - 文件存储：腾讯云 COS
 

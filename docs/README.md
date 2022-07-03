@@ -22,7 +22,6 @@ $ goctl api go -api core.api -dir . -style go_zero
 ```
 
 
-
 ## 配置
 
 ### 环境变量
@@ -106,8 +105,9 @@ $ docker exec -it gredis bash
 ## 参考文档
 
 [1]: https://golang.org/	"Go语言官网"
-[2]: https://gorm.io/docs	"gorm"
-[3]: https://console.cloud.tencent.com/cos	"COS控制台"
-[4]: https://cloud.tencent.com/document/product/436/31215	"COS开发文档"
-[5]: https://console.cloud.tencent.com/cam/capi	"腾讯云密钥"
+[2]: https://go-zero.dev/docs/quick-start/monolithic-service	"Go-Zero 单体服务"
+[3]: https://gorm.io/docs	"gorm"
+[4]: https://console.cloud.tencent.com/cos	"COS控制台"
+[5]: https://cloud.tencent.com/document/product/436/31215	"COS开发文档"
+[6]: https://console.cloud.tencent.com/cam/capi	"腾讯云密钥"
 
