@@ -2,7 +2,6 @@ package logic
 
 import (
 	"context"
-	"errors"
 	"gcloud/core/define"
 	"time"
 
@@ -28,6 +27,7 @@ func NewMailCodeSendRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContex
 }
 
 func (l *MailCodeSendRegisterLogic) MailCodeSendRegister(req *types.MailCodeSendRequest) (resp *types.MailCodeSendReply, err error) {
+	resp = new(types.MailCodeSendReply)
 	// 1 邮箱未注册
 	var count int64
 	// 1.1 查询当前邮箱是否在数据库中
@@ -40,7 +40,7 @@ func (l *MailCodeSendRegisterLogic) MailCodeSendRegister(req *types.MailCodeSend
 	}
 
 	if count > 0 {
-		err = errors.New("registered")
+		resp.Msg = "registered"
 		return
 	}
 

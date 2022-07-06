@@ -2,7 +2,6 @@ package logic
 
 import (
 	"context"
-	"errors"
 	"gcloud/core/helper"
 
 	"gcloud/core/internal/svc"
@@ -27,13 +26,15 @@ func NewUserRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *User
 }
 
 func (l *UserRegisterLogic) UserRegister(req *types.UserRegisterRequest) (resp *types.UserRegisterReply, err error) {
+	resp = new(types.UserRegisterReply)
 	// 判断code是否一致
 	code, err := l.svcCtx.RDB.Get(l.ctx, req.Email).Result()
 	if err != nil {
-		return nil, errors.New("无效验证码")
+		resp.Msg = "无效验证码"
+		return
 	}
 	if code != req.Code {
-		err = errors.New("验证码错误")
+		resp.Msg = "验证码错误"
 		return
 	}
 
@@ -47,7 +48,7 @@ func (l *UserRegisterLogic) UserRegister(req *types.UserRegisterRequest) (resp *
 		return
 	}
 	if count > 0 {
-		err = errors.New("用户名已存在")
+		resp.Msg = "用户名已存在"
 		return
 	}
 
@@ -65,5 +66,6 @@ func (l *UserRegisterLogic) UserRegister(req *types.UserRegisterRequest) (resp *
 	if err != nil {
 		return
 	}
+	resp.Msg = "注册成功"
 	return
 }

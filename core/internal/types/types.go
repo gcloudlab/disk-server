@@ -158,6 +158,7 @@ type LoginRequest struct {
 type LoginReply struct {
 	Token        string `json:"token"`
 	RefreshToken string `json:"refresh_token"`
+	Email        string `json:"email"`
 }
 
 type UserDetailRequest struct {
@@ -175,6 +176,7 @@ type MailCodeSendRequest struct {
 
 type MailCodeSendReply struct {
 	Code string `json:"code"`
+	Msg  string `json:"msg"`
 }
 
 type UserRegisterRequest struct {
@@ -185,4 +187,5 @@ type UserRegisterRequest struct {
 }
 
 type UserRegisterReply struct {
+	Msg string `json:"msg"`
 }

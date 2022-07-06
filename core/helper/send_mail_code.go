@@ -12,10 +12,10 @@ import (
 
 // SendMailCode
 // 邮箱验证码发送
-func SendMailCode(_, code string) error {
+func SendMailCode(mail, code string) error {
 	e := email.NewEmail()
 	e.From = "GCloud <gcloud2yesmore@163.com>"
-	e.To = []string{"3224266014@qq.com"}
+	e.To = []string{mail}
 	e.Subject = "GCloud 账号注册验证码"
 	e.HTML = []byte("验证码将在5分钟后失效，请及时完成注册，验证码：<h1>" + code + "</h1>")
 	err := e.SendWithTLS("smtp.163.com:465", smtp.PlainAuth("", "gcloud2yesmore@163.com", define.MailPassword, "smtp.163.com"),

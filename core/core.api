@@ -240,6 +240,7 @@ type LoginRequest {
 type LoginReply {
 	Token        string `json:"token"`
 	RefreshToken string `json:"refresh_token"`
+	Email        string `json:"email"`
 }
 
 type UserDetailRequest {
@@ -257,6 +258,7 @@ type MailCodeSendRequest {
 
 type MailCodeSendReply {
 	Code string `json:"code"`
+	Msg  string `json:"msg"`
 }
 
 type UserRegisterRequest {
@@ -270,4 +272,6 @@ type UserRegisterRequest {
 	Code string `json:"code"`
 }
 
-type UserRegisterReply {}
+type UserRegisterReply {
+	Msg string `json:"msg"`
+}
