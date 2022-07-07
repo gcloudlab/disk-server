@@ -2,8 +2,8 @@ package logic
 
 import (
 	"context"
-	"errors"
 
+	"gcloud/core/helper"
 	"gcloud/core/internal/svc"
 	"gcloud/core/internal/types"
 	"gcloud/core/models"
@@ -25,18 +25,26 @@ func NewUserDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserDe
 	}
 }
 
-func (l *UserDetailLogic) UserDetail(req *types.UserDetailRequest) (resp *types.UserDetailReply, err error) {
+func (l *UserDetailLogic) UserDetail(req *types.UserDetailRequest, authorization string) (resp *types.UserDetailReply, err error) {
 	resp = &types.UserDetailReply{}
+	userClaim, err := helper.AnalyzeToken(authorization)
+	if err != nil {
+		resp.Msg = "expired token"
+		return
+	}
 	user_detail := new(models.UserBasic)
 
 	l.svcCtx.Engine.
-		Where("identity = ?", req.Identity).
+		Where("name = ?", userClaim.Name).
 		First(user_detail)
 	if user_detail.Id == 0 {
-		return nil, errors.New("user not fonud")
+		resp.Msg = "not found"
+		return
 	}
 
 	resp.Name = user_detail.Name
 	resp.Email = user_detail.Email
+	resp.Identity = user_detail.Identity
+	resp.Msg = "success"
 	return
 }

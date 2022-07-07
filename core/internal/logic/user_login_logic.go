@@ -2,7 +2,6 @@ package logic
 
 import (
 	"context"
-	"errors"
 	"gcloud/core/define"
 
 	"gcloud/core/helper"
@@ -28,6 +27,7 @@ func NewUserLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserLog
 }
 
 func (l *UserLoginLogic) UserLogin(req *types.LoginRequest) (resp *types.LoginReply, err error) {
+	resp = new(types.LoginReply)
 	// 从数据库中查询当前用户
 	user := new(models.UserBasic)
 	l.svcCtx.Engine.
@@ -36,7 +36,8 @@ func (l *UserLoginLogic) UserLogin(req *types.LoginRequest) (resp *types.LoginRe
 	// has, err := models.Engine.Where("name = ? AND password = ?", req.Name, req.Password).Get(user)
 
 	if user.Id == 0 {
-		return nil, errors.New("用户名或密码错误")
+		resp.Msg = "用户名或密码错误"
+		return
 	}
 
 	// 生成普通 token1
@@ -51,9 +52,8 @@ func (l *UserLoginLogic) UserLogin(req *types.LoginRequest) (resp *types.LoginRe
 		return nil, err
 	}
 
-	resp = new(types.LoginReply)
 	resp.Token = token
 	resp.RefreshToken = refreshToken
-	resp.Email = user.Email
+	resp.Msg = "用户登录成功"
 	return
 }

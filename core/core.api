@@ -6,10 +6,6 @@ service core-api {
 	@handler UserLogin
 	post /user/login(LoginRequest) returns (LoginReply)
 	
-	// 用户详情
-	@handler UserDetail
-	get /user/detail(UserDetailRequest) returns (UserDetailReply)
-	
 	// 邮箱验证码发送
 	@handler MailCodeSendRegister
 	post /mail/code/send/register(MailCodeSendRequest) returns (MailCodeSendReply)
@@ -67,6 +63,10 @@ service core-api {
 	// 刷新token
 	@handler RefreshAuthorization
 	post /refresh/authorization(RefreshAuthorizationRequest) returns (RefreshAuthorizationReply)
+	
+	// 用户详情
+	@handler UserDetail
+	get /user/detail(UserDetailRequest) returns (UserDetailReply)
 	
 	// 文件上传前基本信息处理
 	@handler FileUploadPrepare
@@ -240,16 +240,17 @@ type LoginRequest {
 type LoginReply {
 	Token        string `json:"token"`
 	RefreshToken string `json:"refresh_token"`
-	Email        string `json:"email"`
+	Msg          string `json:"msg"`
 }
 
 type UserDetailRequest {
-	Identity string `json:"identity"`
 }
 
 type UserDetailReply {
-	Name  string `json:"name"`
-	Email string `json:"email"`
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+	Msg      string `json:"msg"`
+	Identity string `json:"identity"`
 }
 
 type MailCodeSendRequest {
