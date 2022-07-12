@@ -118,6 +118,7 @@ type UserFileListReply struct {
 
 type UserFile struct {
 	Id                 int64  `json:"id"`
+	ParentId           int64  `json:"parent_id"`
 	Identity           string `json:"identity"`
 	RepositoryIdentity string `json:"repository_identity"`
 	Name               string `json:"name"`

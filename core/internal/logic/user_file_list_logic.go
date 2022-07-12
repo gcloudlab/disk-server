@@ -40,13 +40,18 @@ func (l *UserFileListLogic) UserFileList(req *types.UserFileListRequest, userIde
 		page = 1
 	}
 	offset := (page - 1) * size
+	// TODO 按文件名查询
+	// id := req.Id =》 parent_id
+	// if id == 0 {
+	// 	id = -1
+	// }
 
 	err = l.svcCtx.Engine.
 		Table("user_repository").
-		Select("user_repository.id, user_repository.identity, "+
+		Select("user_repository.id, user_repository.parent_id, user_repository.identity, "+
 			"user_repository.repository_identity, user_repository.ext,"+
 			"user_repository.name, repository_pool.path, repository_pool.size").
-		Where("parent_id = ? AND user_identity = ? ", req.Id, userIdentity).
+		Where("user_identity = ? ", userIdentity).
 		Where("user_repository.deleted_at = ? OR user_repository.deleted_at IS NULL", time.Time{}.Format(define.Datetime)).
 		Joins("left join repository_pool on user_repository.repository_identity = repository_pool.identity").
 		Limit(size).
@@ -60,7 +65,8 @@ func (l *UserFileListLogic) UserFileList(req *types.UserFileListRequest, userIde
 	// 查询总数
 	err = l.svcCtx.Engine.
 		Table("user_repository").
-		Where("parent_id = ? AND user_identity = ? AND deleted_at IS NULL", req.Id, userIdentity).
+		// TODO parent_id = ? AND
+		Where("user_identity = ? AND deleted_at IS NULL", userIdentity).
 		Count(&cnt).Error
 	if err != nil {
 		return
