@@ -49,7 +49,7 @@ func (l *UserFileListLogic) UserFileList(req *types.UserFileListRequest, userIde
 	err = l.svcCtx.Engine.
 		Table("user_repository").
 		Select("user_repository.id, user_repository.parent_id, user_repository.identity, "+
-			"user_repository.repository_identity, user_repository.ext,"+
+			"user_repository.repository_identity, user_repository.ext, user_repository.updated_at,"+
 			"user_repository.name, repository_pool.path, repository_pool.size").
 		Where("user_identity = ? ", userIdentity).
 		Where("user_repository.deleted_at = ? OR user_repository.deleted_at IS NULL", time.Time{}.Format(define.Datetime)).

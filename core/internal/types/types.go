@@ -125,6 +125,7 @@ type UserFile struct {
 	Size               int64  `json:"size"`
 	Ext                string `json:"ext"`
 	Path               string `json:"path"`
+	UpdatedAt          string `json:"updated_at"`
 }
 
 type UserRepositorySaveRequest struct {
