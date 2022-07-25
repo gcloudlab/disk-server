@@ -2,7 +2,6 @@ package logic
 
 import (
 	"context"
-	"errors"
 	"gcloud/core/helper"
 
 	"gcloud/core/internal/svc"
@@ -27,6 +26,7 @@ func NewShareBasicSaveLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Sh
 }
 
 func (l *ShareBasicSaveLogic) ShareBasicSave(req *types.ShareBasicSaveRequest, userIdentity string) (resp *types.ShareBasicSaveReply, err error) {
+	resp = new(types.ShareBasicSaveReply)
 	// 获取资源详情 from repository_pool
 	rp := new(models.RepositoryPool)
 	err = l.svcCtx.Engine.
@@ -34,10 +34,12 @@ func (l *ShareBasicSaveLogic) ShareBasicSave(req *types.ShareBasicSaveRequest, u
 		Where("identity = ?", req.RepositoryIdentity).
 		First(rp).Error
 	if err != nil {
-		return nil, err
+		resp.Msg = "error"
+		return
 	}
 	if rp.Id == 0 {
-		return nil, errors.New("资源不存在")
+		resp.Msg = "资源不存在"
+		return
 	}
 
 	// 资源保存 to user_repository
@@ -57,8 +59,7 @@ func (l *ShareBasicSaveLogic) ShareBasicSave(req *types.ShareBasicSaveRequest, u
 		return
 	}
 
-	resp = &types.ShareBasicSaveReply{
-		Identity: usr.Identity,
-	}
+	resp.Identity = usr.Identity
+	resp.Msg = "success"
 	return
 }

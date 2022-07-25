@@ -45,6 +45,7 @@ func (l *UserRegisterLogic) UserRegister(req *types.UserRegisterRequest) (resp *
 		Where("name = ?", req.Name).
 		Count(&count).Error
 	if err != nil {
+		resp.Msg = "出错了"
 		return
 	}
 	if count > 0 {
@@ -64,8 +65,10 @@ func (l *UserRegisterLogic) UserRegister(req *types.UserRegisterRequest) (resp *
 		Select("identity", "name", "email", "password", "created_at", "updated_at").
 		Create(user).Error
 	if err != nil {
+		resp.Msg = "出错了"
 		return
 	}
 	resp.Msg = "注册成功"
+	resp.Code = 200
 	return
 }

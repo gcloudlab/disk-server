@@ -38,11 +38,14 @@ func (l *UserFolderCreateLogic) UserFolderCreate(req *types.UserFolderCreateRequ
 		Where("name = ? AND parent_id = ?", req.Name, req.ParentId).
 		Count(&cnt).Error
 
+	resp = new(types.UserFolderCreateReply)
 	if err != nil {
+		resp.Msg = "error"
 		return
 	}
 	if cnt > 0 {
-		return nil, errors.New("文件名已存在")
+		resp.Msg = "文件名已存在"
+		return
 	}
 
 	// 创建文件夹
@@ -57,7 +60,9 @@ func (l *UserFolderCreateLogic) UserFolderCreate(req *types.UserFolderCreateRequ
 		Select("identity", "name", "user_identity", "parent_id", "created_at", "updated_at").
 		Create(data).Error
 	if err != nil {
+		resp.Msg = "error"
 		return
 	}
+	resp.Msg = "success"
 	return
 }

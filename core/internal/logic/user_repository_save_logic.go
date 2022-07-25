@@ -38,12 +38,17 @@ func (l *UserRepositorySaveLogic) UserRepositorySave(req *types.UserRepositorySa
 		Ext:                req.Ext,
 	}
 
+	resp = new(types.UserRepositorySaveReply)
+
 	err = l.svcCtx.Engine.
 		Select("identity", "parent_id", "user_identity", "repository_identity", "name", "ext", "created_at", "updated_at").
 		Create(usr).Error
 	if err != nil {
+		resp.Msg = "error"
 		return
 	}
 
+	resp.Msg = "success"
+	resp.Code = 200
 	return
 }

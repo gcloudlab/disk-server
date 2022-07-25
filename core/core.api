@@ -92,7 +92,10 @@ type CosObject {
 	Etag       string `json:"etag"`
 }
 
-type FileUploadChunkCompleteReply {}
+type FileUploadChunkCompleteReply {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
+}
 
 type FileUploadChunkRequest { // formdata
 	// key
@@ -102,6 +105,8 @@ type FileUploadChunkRequest { // formdata
 
 type FileUploadChunkReply {
 	Etag string `json:"etag"` // MD5
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
 }
 
 type FileUploadPrepareRequest {
@@ -114,6 +119,8 @@ type FileUploadPrepareReply {
 	Identity string `json:"identity"`
 	UploadId string `json:"upload_id"`
 	Key      string `json:"key"`
+	Msg      string `json:"msg"`
+	Code     int    `json:"code"`
 }
 
 type RefreshAuthorizationRequest {}
@@ -121,6 +128,8 @@ type RefreshAuthorizationRequest {}
 type RefreshAuthorizationReply {
 	Token        string `json:"token"`
 	RefreshToken string `json:"refresh_token"`
+	Msg          string `json:"msg"`
+	Code         int    `json:"code"`
 }
 
 type ShareBasicSaveRequest {
@@ -130,6 +139,8 @@ type ShareBasicSaveRequest {
 
 type ShareBasicSaveReply {
 	Identity string `json:"identity"`
+	Msg      string `json:"msg"`
+	Code     int    `json:"code"`
 }
 
 type ShareBasicDetailRequest {
@@ -143,6 +154,8 @@ type ShareBasicDetailReply {
 	Size               int64  `json:"size"`
 	Path               string `json:"path"`
 	ClickNum           int    `json:"click_num"`
+	Msg                string `json:"msg"`
+	Code               int    `json:"code"`
 }
 
 type ShareBasicCreateRequest {
@@ -152,6 +165,8 @@ type ShareBasicCreateRequest {
 
 type ShareBasicCreateReply {
 	Identity string `json:"identity"`
+	Msg      string `json:"msg"`
+	Code     int    `json:"code"`
 }
 
 type UserFileMoveRequest {
@@ -160,6 +175,8 @@ type UserFileMoveRequest {
 }
 
 type UserFileMoveReply {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
 }
 
 type UserFileDeleteRequest {
@@ -167,6 +184,8 @@ type UserFileDeleteRequest {
 }
 
 type UserFileDeleteReply {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
 }
 
 type UserFolderCreateRequest {
@@ -176,6 +195,8 @@ type UserFolderCreateRequest {
 
 type UserFolderCreateReply {
 	Identity string `json:"identity"`
+	Msg      string `json:"msg"`
+	Code     int    `json:"code"`
 }
 
 type UserFileNameUpdateRequest {
@@ -184,6 +205,8 @@ type UserFileNameUpdateRequest {
 }
 
 type UserFileNameUpdateReply {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
 }
 
 type UserFileListRequest {
@@ -195,6 +218,8 @@ type UserFileListRequest {
 type UserFileListReply {
 	Count int64       `json:"count"`
 	List  []*UserFile `json:"list"`
+	Msg   string      `json:"msg"`
+	Code  int         `json:"code"`
 }
 
 type UserFile {
@@ -216,7 +241,10 @@ type UserRepositorySaveRequest {
 	Name               string `json:"name"`
 }
 
-type UserRepositorySaveReply {}
+type UserRepositorySaveReply {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
+}
 
 type FileUploadRequest {
 	Hash string `json:"hash,optional"`
@@ -230,6 +258,8 @@ type FileUploadReply {
 	Identity string `json:"identity"`
 	Ext      string `json:"ext"`
 	Name     string `json:"name"`
+	Msg      string `json:"msg"`
+	Code     int    `json:"code"`
 }
 
 /****************** User model ***********************/
@@ -243,6 +273,7 @@ type LoginReply {
 	Token        string `json:"token"`
 	RefreshToken string `json:"refresh_token"`
 	Msg          string `json:"msg"`
+	Code         int    `json:"code"`
 }
 
 type UserDetailRequest {
@@ -253,6 +284,7 @@ type UserDetailReply {
 	Email    string `json:"email"`
 	Msg      string `json:"msg"`
 	Identity string `json:"identity"`
+	Code     int    `json:"code"`
 }
 
 type MailCodeSendRequest {
@@ -276,5 +308,6 @@ type UserRegisterRequest {
 }
 
 type UserRegisterReply {
-	Msg string `json:"msg"`
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
 }

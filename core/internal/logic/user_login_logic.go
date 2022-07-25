@@ -43,13 +43,15 @@ func (l *UserLoginLogic) UserLogin(req *types.LoginRequest) (resp *types.LoginRe
 	// 生成普通 token1
 	token, err := helper.GenerateToken(user.Id, user.Identity, user.Name, define.TokenExpire)
 	if err != nil {
-		return nil, err
+		resp.Msg = "生成token失败"
+		return
 	}
 	// 生成用于刷新 token1 的 token2
 	// 当 token1 失效后，使用 token2 生成新 token1
 	refreshToken, err := helper.GenerateToken(user.Id, user.Identity, user.Name, define.RefreshTokenExpire)
 	if err != nil {
-		return nil, err
+		resp.Msg = "生成token失败"
+		return
 	}
 
 	resp.Token = token

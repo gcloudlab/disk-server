@@ -13,6 +13,8 @@ type CosObject struct {
 }
 
 type FileUploadChunkCompleteReply struct {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
 }
 
 type FileUploadChunkRequest struct {
@@ -20,6 +22,8 @@ type FileUploadChunkRequest struct {
 
 type FileUploadChunkReply struct {
 	Etag string `json:"etag"` // MD5
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
 }
 
 type FileUploadPrepareRequest struct {
@@ -32,6 +36,8 @@ type FileUploadPrepareReply struct {
 	Identity string `json:"identity"`
 	UploadId string `json:"upload_id"`
 	Key      string `json:"key"`
+	Msg      string `json:"msg"`
+	Code     int    `json:"code"`
 }
 
 type RefreshAuthorizationRequest struct {
@@ -40,6 +46,8 @@ type RefreshAuthorizationRequest struct {
 type RefreshAuthorizationReply struct {
 	Token        string `json:"token"`
 	RefreshToken string `json:"refresh_token"`
+	Msg          string `json:"msg"`
+	Code         int    `json:"code"`
 }
 
 type ShareBasicSaveRequest struct {
@@ -49,6 +57,8 @@ type ShareBasicSaveRequest struct {
 
 type ShareBasicSaveReply struct {
 	Identity string `json:"identity"`
+	Msg      string `json:"msg"`
+	Code     int    `json:"code"`
 }
 
 type ShareBasicDetailRequest struct {
@@ -62,6 +72,8 @@ type ShareBasicDetailReply struct {
 	Size               int64  `json:"size"`
 	Path               string `json:"path"`
 	ClickNum           int    `json:"click_num"`
+	Msg                string `json:"msg"`
+	Code               int    `json:"code"`
 }
 
 type ShareBasicCreateRequest struct {
@@ -71,6 +83,8 @@ type ShareBasicCreateRequest struct {
 
 type ShareBasicCreateReply struct {
 	Identity string `json:"identity"`
+	Msg      string `json:"msg"`
+	Code     int    `json:"code"`
 }
 
 type UserFileMoveRequest struct {
@@ -79,6 +93,8 @@ type UserFileMoveRequest struct {
 }
 
 type UserFileMoveReply struct {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
 }
 
 type UserFileDeleteRequest struct {
@@ -86,6 +102,8 @@ type UserFileDeleteRequest struct {
 }
 
 type UserFileDeleteReply struct {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
 }
 
 type UserFolderCreateRequest struct {
@@ -95,6 +113,8 @@ type UserFolderCreateRequest struct {
 
 type UserFolderCreateReply struct {
 	Identity string `json:"identity"`
+	Msg      string `json:"msg"`
+	Code     int    `json:"code"`
 }
 
 type UserFileNameUpdateRequest struct {
@@ -103,6 +123,8 @@ type UserFileNameUpdateRequest struct {
 }
 
 type UserFileNameUpdateReply struct {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
 }
 
 type UserFileListRequest struct {
@@ -114,6 +136,8 @@ type UserFileListRequest struct {
 type UserFileListReply struct {
 	Count int64       `json:"count"`
 	List  []*UserFile `json:"list"`
+	Msg   string      `json:"msg"`
+	Code  int         `json:"code"`
 }
 
 type UserFile struct {
@@ -136,6 +160,8 @@ type UserRepositorySaveRequest struct {
 }
 
 type UserRepositorySaveReply struct {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
 }
 
 type FileUploadRequest struct {
@@ -150,6 +176,8 @@ type FileUploadReply struct {
 	Identity string `json:"identity"`
 	Ext      string `json:"ext"`
 	Name     string `json:"name"`
+	Msg      string `json:"msg"`
+	Code     int    `json:"code"`
 }
 
 type LoginRequest struct {
@@ -161,6 +189,7 @@ type LoginReply struct {
 	Token        string `json:"token"`
 	RefreshToken string `json:"refresh_token"`
 	Msg          string `json:"msg"`
+	Code         int    `json:"code"`
 }
 
 type UserDetailRequest struct {
@@ -171,6 +200,7 @@ type UserDetailReply struct {
 	Email    string `json:"email"`
 	Msg      string `json:"msg"`
 	Identity string `json:"identity"`
+	Code     int    `json:"code"`
 }
 
 type MailCodeSendRequest struct {
@@ -190,5 +220,6 @@ type UserRegisterRequest struct {
 }
 
 type UserRegisterReply struct {
-	Msg string `json:"msg"`
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
 }

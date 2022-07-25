@@ -28,7 +28,10 @@ func (l *UserFileDeleteLogic) UserFileDelete(req *types.UserFileDeleteRequest, u
 	err = l.svcCtx.Engine.
 		Where("user_identity = ? AND identity = ?", userIdentity, req.Identity).
 		Delete(new(models.UserRepository)).Error
+
+	resp = new(types.UserFileDeleteReply)
 	if err != nil {
+		resp.Msg = "error"
 		return
 	}
 	return

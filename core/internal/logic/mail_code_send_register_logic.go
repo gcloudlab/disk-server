@@ -36,6 +36,7 @@ func (l *MailCodeSendRegisterLogic) MailCodeSendRegister(req *types.MailCodeSend
 		Where("email = ?", req.Email).
 		Count(&count).Error
 	if err != nil {
+		resp.Msg = "error"
 		return
 	}
 
@@ -51,8 +52,10 @@ func (l *MailCodeSendRegisterLogic) MailCodeSendRegister(req *types.MailCodeSend
 	// 1.4 发送邮件验证码
 	err = helper.SendMailCode(req.Email, code)
 	if err != nil {
-		return nil, err
+		resp.Msg = "error"
+		return
 	}
 
+	resp.Msg = "success"
 	return
 }

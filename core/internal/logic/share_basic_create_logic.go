@@ -2,7 +2,6 @@ package logic
 
 import (
 	"context"
-	"errors"
 	"gcloud/core/helper"
 	"gcloud/core/models"
 
@@ -27,16 +26,19 @@ func NewShareBasicCreateLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 }
 
 func (l *ShareBasicCreateLogic) ShareBasicCreate(req *types.ShareBasicCreateRequest, userIdentity string) (resp *types.ShareBasicCreateReply, err error) {
+	resp = new(types.ShareBasicCreateReply)
 	idna := helper.UUID()
 	usr := new(models.UserRepository)
 	err = l.svcCtx.Engine.
 		Where("identity = ?", req.UserRepositoryIdentity).
 		First(usr).Error
 	if err != nil {
+		resp.Msg = "error"
 		return
 	}
 	if usr.Id == 0 {
-		return nil, errors.New("user repository not found")
+		resp.Msg = "user repository not found"
+		return
 	}
 
 	data := &models.ShareBasic{
@@ -50,11 +52,11 @@ func (l *ShareBasicCreateLogic) ShareBasicCreate(req *types.ShareBasicCreateRequ
 		Select("identity", "user_identity", "repository_identity", "user_repository_identity", "expired_time", "created_at", "updated_at").
 		Create(data).Error
 	if err != nil {
+		resp.Msg = "error"
 		return
 	}
 
-	resp = &types.ShareBasicCreateReply{
-		Identity: idna,
-	}
+	resp.Identity = idna
+	resp.Msg = "success"
 	return
 }

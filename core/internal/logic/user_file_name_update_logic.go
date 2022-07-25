@@ -2,7 +2,6 @@ package logic
 
 import (
 	"context"
-	"errors"
 
 	"gcloud/core/internal/svc"
 	"gcloud/core/internal/types"
@@ -25,8 +24,10 @@ func NewUserFileNameUpdateLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 }
 
 func (l *UserFileNameUpdateLogic) UserFileNameUpdate(req *types.UserFileNameUpdateRequest, userIdentity string) (resp *types.UserFileNameUpdateReply, err error) {
+	resp = new(types.UserFileNameUpdateReply)
 	if req.Name == "" {
-		return nil, errors.New("name is empty")
+		resp.Msg = "文件名为空"
+		return
 	}
 
 	// 判断当前文件名在该层级下是否已存在
@@ -38,10 +39,12 @@ func (l *UserFileNameUpdateLogic) UserFileNameUpdate(req *types.UserFileNameUpda
 		Count(&cnt).Error
 
 	if err != nil {
+		resp.Msg = "error"
 		return
 	}
 	if cnt > 0 {
-		return nil, errors.New("文件名已存在")
+		resp.Msg = "文件名已存在"
+		return
 	}
 
 	// 更新文件名
@@ -51,7 +54,9 @@ func (l *UserFileNameUpdateLogic) UserFileNameUpdate(req *types.UserFileNameUpda
 		Update("name", req.Name).Error
 
 	if err != nil {
+		resp.Msg = "error"
 		return
 	}
+	resp.Msg = "更新成功"
 	return
 }

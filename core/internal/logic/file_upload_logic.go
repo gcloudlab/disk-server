@@ -34,17 +34,18 @@ func (l *FileUploadLogic) FileUpload(req *types.FileUploadRequest) (resp *types.
 		Ext:      req.Ext,
 		Size:     req.Size,
 	}
-
+	resp = new(types.FileUploadReply)
 	err = l.svcCtx.Engine.
 		Select("identity", "name", "hash", "path", "ext", "size", "created_at", "updated_at").
 		Create(rp).Error
 	if err != nil {
+		resp.Msg = "error"
 		return
 	}
 
-	resp = new(types.FileUploadReply)
 	resp.Identity = rp.Identity
 	resp.Ext = rp.Ext
 	resp.Name = rp.Name
+	resp.Msg = "success"
 	return
 }

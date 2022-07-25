@@ -59,6 +59,7 @@ func (l *UserFileListLogic) UserFileList(req *types.UserFileListRequest, userIde
 		Find(&usrFile).Error
 
 	if err != nil {
+		resp.Msg = "error"
 		return
 	}
 
@@ -69,10 +70,12 @@ func (l *UserFileListLogic) UserFileList(req *types.UserFileListRequest, userIde
 		Where("user_identity = ? AND deleted_at IS NULL", userIdentity).
 		Count(&cnt).Error
 	if err != nil {
+		resp.Msg = "error"
 		return
 	}
 
 	resp.List = usrFile
 	resp.Count = cnt
+	resp.Msg = "success"
 	return
 }

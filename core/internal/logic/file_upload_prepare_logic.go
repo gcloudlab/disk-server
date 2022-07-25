@@ -40,10 +40,12 @@ func (l *FileUploadPrepareLogic) FileUploadPrepare(req *types.FileUploadPrepareR
 		// 文件不存在，获取文件的 UploadID、key，执行分片上传
 		key, uploadId, err := helper.CosInitPart(req.Ext)
 		if err != nil {
-			return nil, err
+			resp.Msg = "error"
+			return resp, err
 		}
 		resp.Key = key
 		resp.UploadId = uploadId
+		resp.Msg = "success"
 	}
 
 	return

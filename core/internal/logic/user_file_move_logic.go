@@ -2,7 +2,6 @@ package logic
 
 import (
 	"context"
-	"errors"
 	"gcloud/core/models"
 
 	"gcloud/core/internal/svc"
@@ -26,6 +25,7 @@ func NewUserFileMoveLogic(ctx context.Context, svcCtx *svc.ServiceContext) *User
 }
 
 func (l *UserFileMoveLogic) UserFileMove(req *types.UserFileMoveRequest, userIdentity string) (resp *types.UserFileMoveReply, err error) {
+	resp = new(types.UserFileMoveReply)
 	// parentId
 	parentData := new(models.UserRepository)
 	err = l.svcCtx.Engine.
@@ -33,10 +33,12 @@ func (l *UserFileMoveLogic) UserFileMove(req *types.UserFileMoveRequest, userIde
 		Where("identity = ? AND user_identity = ?", req.ParentIdentity, userIdentity).
 		First(parentData).Error
 	if err != nil {
-		return nil, err
+		resp.Msg = "error"
+		return
 	}
 	if parentData.Id == 0 {
-		return nil, errors.New("文件夹不存在")
+		resp.Msg = "文件夹不存在"
+		return
 	}
 
 	// 更新记录的ParentId
@@ -45,7 +47,8 @@ func (l *UserFileMoveLogic) UserFileMove(req *types.UserFileMoveRequest, userIde
 		Where("identity = ? AND deleted_at IS NULL", req.Identity).
 		Update("parent_id", int64(parentData.Id)).Error
 	if err != nil {
-		return nil, err
+		resp.Msg = "error"
+		return
 	}
 	return
 }

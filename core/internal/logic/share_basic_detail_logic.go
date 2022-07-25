@@ -24,6 +24,7 @@ func NewShareBasicDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 }
 
 func (l *ShareBasicDetailLogic) ShareBasicDetail(req *types.ShareBasicDetailRequest) (resp *types.ShareBasicDetailReply, err error) {
+	resp = new(types.ShareBasicDetailReply)
 	// 1 更新分享记录的点击次数
 	err = l.svcCtx.Engine.
 		Table("share_basic").
@@ -31,6 +32,7 @@ func (l *ShareBasicDetailLogic) ShareBasicDetail(req *types.ShareBasicDetailRequ
 		Exec("UPDATE share_basic SET click_num = click_num + 1 where identity = ?", req.Identity).Error
 
 	if err != nil {
+		resp.Msg = "error"
 		return
 	}
 
@@ -44,6 +46,7 @@ func (l *ShareBasicDetailLogic) ShareBasicDetail(req *types.ShareBasicDetailRequ
 		Where("share_basic.identity = ?", req.Identity).
 		First(resp).Error
 	if err != nil {
+		resp.Msg = "error"
 		return
 	}
 
