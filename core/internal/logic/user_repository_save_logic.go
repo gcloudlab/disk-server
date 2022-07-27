@@ -39,6 +39,16 @@ func (l *UserRepositorySaveLogic) UserRepositorySave(req *types.UserRepositorySa
 	}
 
 	resp = new(types.UserRepositorySaveReply)
+	var count int64
+	err = l.svcCtx.Engine.
+		Table("user_repository").
+		Where("name = ? AND parent_id = ?", req.Name, req.ParentId).
+		Count(&count).Error
+	if count > 0 {
+		resp.Msg = "exist"
+		resp.Code = 405
+		return
+	}
 
 	err = l.svcCtx.Engine.
 		Select("identity", "parent_id", "user_identity", "repository_identity", "name", "ext", "created_at", "updated_at").

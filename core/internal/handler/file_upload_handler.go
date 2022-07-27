@@ -47,6 +47,7 @@ func FileUploadHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 				Identity: rp.Identity,
 				Ext:      rp.Ext,
 				Name:     rp.Name,
+				Msg:      "success",
 			})
 			return
 		}
