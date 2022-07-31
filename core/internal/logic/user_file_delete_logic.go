@@ -34,5 +34,6 @@ func (l *UserFileDeleteLogic) UserFileDelete(req *types.UserFileDeleteRequest, u
 		resp.Msg = "error"
 		return
 	}
+	resp.Msg = "success"
 	return
 }

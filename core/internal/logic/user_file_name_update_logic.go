@@ -57,6 +57,6 @@ func (l *UserFileNameUpdateLogic) UserFileNameUpdate(req *types.UserFileNameUpda
 		resp.Msg = "error"
 		return
 	}
-	resp.Msg = "更新成功"
+	resp.Msg = "success"
 	return
 }

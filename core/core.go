@@ -22,6 +22,7 @@ func main() {
 
 	ctx := svc.NewServiceContext(c) // 注入全局上下文
 	server := rest.MustNewServer(c.RestConf)
+	// server.Use(c.RestConf.MaxBytes)
 	defer server.Stop()
 
 	handler.RegisterHandlers(server, ctx)

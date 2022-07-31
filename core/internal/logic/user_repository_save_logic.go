@@ -42,7 +42,7 @@ func (l *UserRepositorySaveLogic) UserRepositorySave(req *types.UserRepositorySa
 	var count int64
 	err = l.svcCtx.Engine.
 		Table("user_repository").
-		Where("name = ? AND parent_id = ?", req.Name, req.ParentId).
+		Where("name = ? AND parent_id = ? AND deleted_at IS NULL", req.Name, req.ParentId).
 		Count(&count).Error
 	if count > 0 {
 		resp.Msg = "exist"

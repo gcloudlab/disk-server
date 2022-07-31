@@ -39,7 +39,8 @@ func (l *UserFileListLogic) UserFileList(req *types.UserFileListRequest, userIde
 	if page == 0 {
 		page = 1
 	}
-	offset := (page - 1) * size
+	// offset := (page - 1) * size
+
 	// TODO 按文件名查询
 	// id := req.Id =》 parent_id
 	// if id == 0 {
@@ -54,9 +55,9 @@ func (l *UserFileListLogic) UserFileList(req *types.UserFileListRequest, userIde
 		Where("user_identity = ? ", userIdentity).
 		Where("user_repository.deleted_at = ? OR user_repository.deleted_at IS NULL", time.Time{}.Format(define.Datetime)).
 		Joins("left join repository_pool on user_repository.repository_identity = repository_pool.identity").
-		Limit(size).
-		Offset(offset).
 		Find(&usrFile).Error
+	// Limit(size).
+	// Offset(offset).
 
 	if err != nil {
 		resp.Msg = "error"
