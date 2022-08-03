@@ -11,6 +11,7 @@ type UserClaim struct {
 	Id       int
 	Identity string
 	Name     string
+	Email    string
 	jwt.StandardClaims
 }
 

@@ -1,0 +1,16 @@
+Name: msggateway-ws
+Host: 0.0.0.0
+Port: 1618
+
+MsgRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: msg.rpc
+
+UserRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: user.rpc
+

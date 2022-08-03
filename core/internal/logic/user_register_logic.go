@@ -27,6 +27,15 @@ func NewUserRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *User
 
 func (l *UserRegisterLogic) UserRegister(req *types.UserRegisterRequest) (resp *types.UserRegisterReply, err error) {
 	resp = new(types.UserRegisterReply)
+	if len(req.Name) < 6 {
+		resp.Msg = "用户名长度不能小于6位"
+		return
+	}
+	if len(req.Password) < 6 {
+		resp.Msg = "密码长度不能小于6位"
+		return
+	}
+
 	// 判断code是否一致
 	code, err := l.svcCtx.RDB.Get(l.ctx, req.Email).Result()
 	if err != nil {

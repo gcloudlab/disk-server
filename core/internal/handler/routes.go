@@ -40,6 +40,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Middleware{serverCtx.Auth},
 			[]rest.Route{
 				{
+					Method:  http.MethodGet,
+					Path:    "/ws/message",
+					Handler: WebsocketMessageHandler(serverCtx),
+				},
+				{
 					Method:  http.MethodPost,
 					Path:    "/file/upload",
 					Handler: FileUploadHandler(serverCtx),

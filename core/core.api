@@ -17,6 +17,7 @@ service core-api {
 	// 获取分享资源详情
 	@handler ShareBasicDetail
 	get /share/basic/detail(ShareBasicDetailRequest) returns (ShareBasicDetailReply)
+	
 }
 
 /****************** File model ***********************/
@@ -24,6 +25,9 @@ service core-api {
 	middleware: Auth
 )
 service core-api {
+	@handler WebsocketMessage
+	get /ws/message(WebsocketMessageRequest) returns (WebsocketMessageReply)
+	
 	// 文件上传
 	@handler FileUpload
 	post /file/upload(FileUploadRequest) returns (FileUploadReply)
@@ -80,6 +84,10 @@ service core-api {
 	@handler FileUploadChunkComplete
 	post /file/upload/chunk/complete(FileUploadChunkCompleteRequest) returns (FileUploadChunkCompleteReply)
 }
+
+type WebsocketMessageRequest {
+}
+type WebsocketMessageReply {}
 
 type FileUploadChunkCompleteRequest {
 	Key        string      `json:"key"`

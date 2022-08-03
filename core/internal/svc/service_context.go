@@ -14,7 +14,7 @@ type ServiceContext struct {
 	Config config.Config   // 配置 (core-api.yaml)
 	Engine *gorm.DB        // orm
 	RDB    *redis.Client   // Redis
-	Auth   rest.Middleware //
+	Auth   rest.Middleware // auth
 }
 
 // 上下文

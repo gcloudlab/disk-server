@@ -6,6 +6,7 @@ require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/go-sql-driver/mysql v1.6.0
+	github.com/gorilla/websocket v1.5.0
 	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible
 	github.com/satori/go.uuid v1.2.0
 	github.com/tencentyun/cos-go-sdk-v5 v0.7.34

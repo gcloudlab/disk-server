@@ -40,7 +40,12 @@ func FileUploadHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 		svcCtx.Engine.
 			Where("hash = ?", hash).
 			First(rp)
-
+		// if err != nil {
+		// 	httpx.OkJson(w, &types.FileUploadReply{
+		// 		Msg: "error",
+		// 	})
+		// 	return
+		// }
 		// 文件已存在
 		if rp.Id != 0 {
 			httpx.OkJson(w, &types.FileUploadReply{

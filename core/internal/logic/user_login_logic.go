@@ -28,6 +28,15 @@ func NewUserLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserLog
 
 func (l *UserLoginLogic) UserLogin(req *types.LoginRequest) (resp *types.LoginReply, err error) {
 	resp = new(types.LoginReply)
+	if len(req.Name) < 6 {
+		resp.Msg = "用户名长度不能小于6位"
+		return
+	}
+	if len(req.Password) < 6 {
+		resp.Msg = "密码长度不能小于6位"
+		return
+	}
+
 	// 从数据库中查询当前用户
 	user := new(models.UserBasic)
 	l.svcCtx.Engine.
