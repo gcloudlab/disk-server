@@ -1,6 +1,6 @@
 Name: core-api
 Host: 0.0.0.0
-Port: 8888
+Port: 20088
 CpuThreshold: 500
 MaxBytes: 100485760
 Timeout: 0

@@ -100,8 +100,28 @@ $ docker exec -it gredis bash
 - 没错 `der-cli` 是我写的一个脚手架工具，但是配置文件依赖的是 `package.json`, 所以你把这文件当成配置文件即可(.config)
 - 我是一只可怜又无助的小前端
 
+## 部署
 
+### Linux环境变量
 
+```shell
+vim /etc/bashrc
+source /etc/bashrc
+```
+
+### 启动Api服务
+
+```shell
+# 在后台启动
+cd /www/wwwroot/gcloud.aoau.top/core
+nohup ./core &
+# 查看后台进程
+ps aux|grep core
+# or
+jobs -l
+# 结束进程
+kill [pid]
+```
 ## 参考文档
 
 [1]: https://golang.org/	"Go语言官网"
