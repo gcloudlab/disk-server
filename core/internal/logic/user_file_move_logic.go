@@ -50,5 +50,6 @@ func (l *UserFileMoveLogic) UserFileMove(req *types.UserFileMoveRequest, userIde
 		resp.Msg = "error"
 		return
 	}
+	resp.Msg = "success"
 	return
 }

@@ -18,6 +18,9 @@ service core-api {
 	@handler ShareBasicDetail
 	get /share/basic/detail(ShareBasicDetailRequest) returns (ShareBasicDetailReply)
 	
+	// 注册量
+	@handler RegisterCount
+	get /register/count(RegisterCountRequest) returns (RegisterCountReply)
 }
 
 /****************** File model ***********************/
@@ -83,6 +86,14 @@ service core-api {
 	// 文件分片上传完成
 	@handler FileUploadChunkComplete
 	post /file/upload/chunk/complete(FileUploadChunkCompleteRequest) returns (FileUploadChunkCompleteReply)
+}
+
+type RegisterCountRequest {
+}
+type RegisterCountReply {
+	Count int64  `json:"count"`
+	Msg   string `json:"msg"`
+	Code  int    `json:"code"`
 }
 
 type WebsocketMessageRequest {
