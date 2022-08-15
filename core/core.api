@@ -35,6 +35,10 @@ service core-api {
 	@handler FileUpload
 	post /file/upload(FileUploadRequest) returns (FileUploadReply)
 	
+	// 用户 - 修改信息
+	@handler UserUpdate
+	post /user/update(UserUpdateRequest) returns (UserUpdateReply)
+	
 	// 用户- 文件关联存储
 	@handler UserRepositorySave
 	post /user/repository/save(UserRepositorySaveRequest) returns (UserRepositorySaveReply)
@@ -86,6 +90,17 @@ service core-api {
 	// 文件分片上传完成
 	@handler FileUploadChunkComplete
 	post /file/upload/chunk/complete(FileUploadChunkCompleteRequest) returns (FileUploadChunkCompleteReply)
+}
+
+type UserUpdateRequest {
+	Name     string `json:"name,optional"`
+	Avatar   string `json:"avatar,optional"`
+	Password string `json:"password,optional"`
+	Email    string `json:"email,optional"`
+}
+type UserUpdateReply {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
 }
 
 type RegisterCountRequest {
@@ -301,6 +316,7 @@ type UserDetailRequest {
 type UserDetailReply {
 	Name     string `json:"name"`
 	Email    string `json:"email"`
+	Avatar   string `json:"avatar"`
 	Msg      string `json:"msg"`
 	Identity string `json:"identity"`
 	Code     int    `json:"code"`

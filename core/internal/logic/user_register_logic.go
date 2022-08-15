@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"gcloud/core/define"
 	"gcloud/core/helper"
 
 	"gcloud/core/internal/svc"
@@ -67,6 +68,7 @@ func (l *UserRegisterLogic) UserRegister(req *types.UserRegisterRequest) (resp *
 		Identity: helper.UUID(),
 		Name:     req.Name,
 		Email:    req.Email,
+		Avatar:   define.AvatarBaseUrl + helper.Random() + ".png",
 		Password: helper.Md5(req.Password),
 	}
 	// fix: 需指定添加字段 (Select())，不推荐使用 Omit()
@@ -80,4 +82,8 @@ func (l *UserRegisterLogic) UserRegister(req *types.UserRegisterRequest) (resp *
 	resp.Msg = "注册成功"
 	resp.Code = 200
 	return
+}
+
+func Random() {
+	panic("unimplemented")
 }

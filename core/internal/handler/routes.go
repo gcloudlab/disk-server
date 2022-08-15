@@ -56,6 +56,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				},
 				{
 					Method:  http.MethodPost,
+					Path:    "/user/update",
+					Handler: UserUpdateHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
 					Path:    "/user/repository/save",
 					Handler: UserRepositorySaveHandler(serverCtx),
 				},

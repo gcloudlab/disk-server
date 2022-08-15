@@ -12,6 +12,7 @@ type UserBasic struct {
 	Name      string
 	Password  string
 	Email     string
+	Avatar    string
 	CreatedAt time.Time      `gorm:"created"`
 	UpdatedAt time.Time      `gorm:"updated"`
 	DeletedAt gorm.DeletedAt `gorm:"deleted"`

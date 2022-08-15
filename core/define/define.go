@@ -31,11 +31,12 @@ var TencentSecretKey = os.Getenv("TencentSecretKey")
 var TencentSecretID = os.Getenv("TencentSecretID")
 var CosBucket = "https://gcloud-1303456836.cos.ap-chengdu.myqcloud.com"
 var CosFolderName = "gcloud"
+var AvatarBaseUrl = CosBucket + "/" + CosFolderName + "/avatars/"
 
 // PageSize 分页的默认参数
 var PageSize = 20
 
 var Datetime = "2000-01-01 00:00:01"
 
-var TokenExpire = 36000
-var RefreshTokenExpire = 72000
+var TokenExpire = 60 * 60 * 24 * 3        // 3 days
+var RefreshTokenExpire = 60 * 60 * 24 * 7 // 7 days
