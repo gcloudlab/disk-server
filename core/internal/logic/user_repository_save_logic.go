@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"gcloud/core/define"
 	"gcloud/core/helper"
 	"gcloud/core/models"
 
@@ -39,6 +40,20 @@ func (l *UserRepositorySaveLogic) UserRepositorySave(req *types.UserRepositorySa
 	}
 
 	resp = new(types.UserRepositorySaveReply)
+	var Size struct {
+		TotalSize int `json:"total_size"`
+	}
+	l.svcCtx.Engine.
+		Table("user_repository").
+		Select("sum(repository_pool.size) as total_size").
+		Where("user_repository.user_identity = ? AND user_repository.deleted_at IS NULL", UserIdentity).
+		Joins("left join repository_pool on user_repository.repository_identity = repository_pool.identity").
+		Take(&Size)
+	if Size.TotalSize >= define.UserRepositoryMaxSize {
+		resp.Msg = "容量不足"
+		return
+	}
+
 	var count int64
 	err = l.svcCtx.Engine.
 		Table("user_repository").

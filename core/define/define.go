@@ -40,3 +40,5 @@ var Datetime = "2000-01-01 00:00:01"
 
 var TokenExpire = 60 * 60 * 24 * 3        // 3 days
 var RefreshTokenExpire = 60 * 60 * 24 * 7 // 7 days
+
+var UserRepositoryMaxSize = 1000 * 1024 * 1024 // 1GB
