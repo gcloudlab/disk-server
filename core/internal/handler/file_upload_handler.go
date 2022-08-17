@@ -69,6 +69,9 @@ func FileUploadHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 		req.Path = cosPath
 		req.Ext = path.Ext(fileHeader.Filename)
 		req.Size = fileHeader.Size
+		if req.Ext == "" {
+			req.Ext = ".unknown"
+		}
 
 		l := logic.NewFileUploadLogic(r.Context(), svcCtx)
 		resp, err := l.FileUpload(&req)
