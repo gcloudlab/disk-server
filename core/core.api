@@ -320,6 +320,7 @@ type UserDetailReply {
 	Msg      string `json:"msg"`
 	Identity string `json:"identity"`
 	Code     int    `json:"code"`
+	CreatedAt string 	`json:"created_at"`
 }
 
 type MailCodeSendRequest {
