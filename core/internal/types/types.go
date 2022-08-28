@@ -223,12 +223,13 @@ type UserDetailRequest struct {
 }
 
 type UserDetailReply struct {
-	Name     string `json:"name"`
-	Email    string `json:"email"`
-	Avatar   string `json:"avatar"`
-	Msg      string `json:"msg"`
-	Identity string `json:"identity"`
-	Code     int    `json:"code"`
+	Name      string `json:"name"`
+	Email     string `json:"email"`
+	Avatar    string `json:"avatar"`
+	Msg       string `json:"msg"`
+	Identity  string `json:"identity"`
+	Code      int    `json:"code"`
+	CreatedAt string `json:"created_at"`
 }
 
 type MailCodeSendRequest struct {
