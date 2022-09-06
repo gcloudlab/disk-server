@@ -91,6 +91,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				},
 				{
 					Method:  http.MethodPost,
+					Path:    "/file/download",
+					Handler: FileDownloadHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
 					Path:    "/share/basic/create",
 					Handler: ShareBasicCreateHandler(serverCtx),
 				},

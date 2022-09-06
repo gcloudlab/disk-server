@@ -130,3 +130,30 @@ func TestPartUploadComplete(t *testing.T) {
 		t.Fatal(err)
 	}
 }
+
+func TestCosDownload(t *testing.T) {
+	u, _ := url.Parse(define.CosBucket)
+	b := &cos.BaseURL{BucketURL: u}
+	client := cos.NewClient(b, &http.Client{
+		Transport: &cos.AuthorizationTransport{
+			SecretID:  define.TencentSecretID,
+			SecretKey: define.TencentSecretKey,
+		},
+	})
+
+	key := define.CosFolderName + "/" + "01e90e8c-94a5-4ef7-9374-89b54770eb10.jpg"
+	// resp, err := client.Object.Get(context.Background(), key, nil)
+	// if err != nil {
+	// 	panic(err)
+	// }
+
+	// bs, _ := ioutil.ReadAll(resp.Body)
+	// resp.Body.Close()
+	// fmt.Printf("%s\n", string(bs))
+
+	_, err := client.Object.GetToFile(context.Background(), key, "01e90e8c-94a5-4ef7-9374-89b54770eb10.jpg", nil)
+	if err != nil {
+		panic(err)
+	}
+	// 返回文件链接
+}

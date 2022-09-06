@@ -63,6 +63,10 @@ service core-api {
 	@handler UserFileMove
 	put /user/file/move(UserFileMoveRequest) returns (UserFileMoveReply)
 	
+	// 用户 - 文件下载
+	@handler FileDownload
+	post /file/download(FileDownloadRequest) returns (FileDownloadReply)
+	
 	// 分享 - 创建分享记录
 	@handler ShareBasicCreate
 	post /share/basic/create(ShareBasicCreateRequest) returns (ShareBasicCreateReply)
@@ -90,6 +94,20 @@ service core-api {
 	// 文件分片上传完成
 	@handler FileUploadChunkComplete
 	post /file/upload/chunk/complete(FileUploadChunkCompleteRequest) returns (FileUploadChunkCompleteReply)
+}
+
+type FileDownloadRequest {
+	Hash string `json:"hash,optional"`
+	Name string `json:"name,optional"`
+	Size int64  `json:"size,optional"`
+	Path string `json:"path,optional"`
+	Ext  string `json:"ext,optional"`
+}
+
+type FileDownloadReply {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
+	Data []byte `json:"data"`
 }
 
 type UserUpdateRequest {
