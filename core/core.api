@@ -337,6 +337,7 @@ type UserDetailReply {
 	Avatar    string `json:"avatar"`
 	Msg       string `json:"msg"`
 	Identity  string `json:"identity"`
+	Capacity  string `json:"capacity"`
 	Code      int    `json:"code"`
 	CreatedAt string `json:"created_at"`
 }

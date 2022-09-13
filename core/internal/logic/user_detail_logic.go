@@ -46,6 +46,7 @@ func (l *UserDetailLogic) UserDetail(req *types.UserDetailRequest, authorization
 	resp.Email = user_detail.Email
 	resp.Identity = user_detail.Identity
 	resp.Avatar = user_detail.Avatar
+	resp.Capacity = user_detail.Capacity
 	resp.CreatedAt = user_detail.CreatedAt.String()
 	resp.Msg = "success"
 	return
