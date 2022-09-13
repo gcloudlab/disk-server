@@ -70,10 +70,11 @@ func (l *UserRegisterLogic) UserRegister(req *types.UserRegisterRequest) (resp *
 		Email:    req.Email,
 		Avatar:   define.AvatarBaseUrl + helper.Random() + ".png",
 		Password: helper.Md5(req.Password),
+		Capacity: define.UserRepositoryMaxSize,
 	}
 	// fix: 需指定添加字段 (Select())，不推荐使用 Omit()
 	err = l.svcCtx.Engine.
-		Select("identity", "name", "email", "password", "created_at", "updated_at").
+		Select("identity", "name", "email", "password", "capacity", "created_at", "updated_at").
 		Create(user).Error
 	if err != nil {
 		resp.Msg = "出错了"

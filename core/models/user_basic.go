@@ -13,7 +13,7 @@ type UserBasic struct {
 	Password  string
 	Email     string
 	Avatar    string
-	Capacity  string
+	Capacity  int
 	CreatedAt time.Time      `gorm:"created"`
 	UpdatedAt time.Time      `gorm:"updated"`
 	DeletedAt gorm.DeletedAt `gorm:"deleted"`

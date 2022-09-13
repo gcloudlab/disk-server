@@ -242,7 +242,7 @@ type UserDetailReply struct {
 	Avatar    string `json:"avatar"`
 	Msg       string `json:"msg"`
 	Identity  string `json:"identity"`
-	Capacity  string `json:"capacity"`
+	Capacity  int    `json:"capacity"`
 	Code      int    `json:"code"`
 	CreatedAt string `json:"created_at"`
 }
