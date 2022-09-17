@@ -181,6 +181,19 @@ type UserFileListReply struct {
 	Code  int         `json:"code"`
 }
 
+type PublicFileListRequest struct {
+	Id   int64 `json:"id,optional"`
+	Page int   `json:"page,optional"`
+	Size int   `json:"size,optional"`
+}
+
+type PublicFileListReply struct {
+	Count int64       `json:"count"`
+	List  []*UserFile `json:"list"`
+	Msg   string      `json:"msg"`
+	Code  int         `json:"code"`
+}
+
 type UserFile struct {
 	Id                 int64  `json:"id"`
 	ParentId           int64  `json:"parent_id"`
@@ -201,6 +214,18 @@ type UserRepositorySaveRequest struct {
 }
 
 type UserRepositorySaveReply struct {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
+}
+
+type PublicRepositorySaveRequest struct {
+	RepositoryIdentity string `json:"repositoryIdentity"`
+	ParentId           int64  `json:"parentId"`
+	Ext                string `json:"ext"`
+	Name               string `json:"name"`
+}
+
+type PublicRepositorySaveReply struct {
 	Msg  string `json:"msg"`
 	Code int    `json:"code"`
 }

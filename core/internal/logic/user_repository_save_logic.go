@@ -27,8 +27,6 @@ func NewUserRepositorySaveLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 }
 
 func (l *UserRepositorySaveLogic) UserRepositorySave(req *types.UserRepositorySaveRequest, UserIdentity string) (resp *types.UserRepositorySaveReply, err error) {
-	// TODO: 检查用户池剩余存储空间
-
 	// 用户新增文件
 	usr := &models.UserRepository{
 		Identity:           helper.UUID(),

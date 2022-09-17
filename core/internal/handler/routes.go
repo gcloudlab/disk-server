@@ -37,6 +37,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/register/count",
 				Handler: RegisterCountHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/public/file/list",
+				Handler: PublicFileListHandler(serverCtx),
+			},
 		},
 	)
 
@@ -44,6 +49,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		rest.WithMiddlewares(
 			[]rest.Middleware{serverCtx.Auth},
 			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/public/file/save",
+					Handler: PublicFileSaveHandler(serverCtx),
+				},
 				{
 					Method:  http.MethodGet,
 					Path:    "/ws/message",

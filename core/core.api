@@ -21,6 +21,10 @@ service core-api {
 	// 注册量
 	@handler RegisterCount
 	get /register/count(RegisterCountRequest) returns (RegisterCountReply)
+	
+	// 公共资源
+	@handler PublicFileList
+	get /public/file/list(PublicFileListRequest) returns (PublicFileListReply)
 }
 
 /****************** File model ***********************/
@@ -28,6 +32,9 @@ service core-api {
 	middleware: Auth
 )
 service core-api {
+	@handler PublicFileSave
+	post /public/file/save(PublicRepositorySaveRequest) returns (PublicRepositorySaveReply)
+	
 	@handler WebsocketMessage
 	get /ws/message(WebsocketMessageRequest) returns (WebsocketMessageReply)
 	
@@ -274,6 +281,19 @@ type UserFileListReply {
 	Code  int         `json:"code"`
 }
 
+type PublicFileListRequest {
+	Id   int64 `json:"id,optional"`
+	Page int   `json:"page,optional"`
+	Size int   `json:"size,optional"`
+}
+
+type PublicFileListReply {
+	Count int64       `json:"count"`
+	List  []*UserFile `json:"list"`
+	Msg   string      `json:"msg"`
+	Code  int         `json:"code"`
+}
+
 type UserFile {
 	Id                 int64  `json:"id"`
 	ParentId           int64  `json:"parent_id"`
@@ -294,6 +314,18 @@ type UserRepositorySaveRequest {
 }
 
 type UserRepositorySaveReply {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
+}
+
+type PublicRepositorySaveRequest {
+	RepositoryIdentity string `json:"repositoryIdentity"`
+	ParentId           int64  `json:"parentId"`
+	Ext                string `json:"ext"`
+	Name               string `json:"name"`
+}
+
+type PublicRepositorySaveReply {
 	Msg  string `json:"msg"`
 	Code int    `json:"code"`
 }

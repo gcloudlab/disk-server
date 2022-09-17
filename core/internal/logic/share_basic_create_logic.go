@@ -37,7 +37,7 @@ func (l *ShareBasicCreateLogic) ShareBasicCreate(req *types.ShareBasicCreateRequ
 		return
 	}
 	if usr.Id == 0 {
-		resp.Msg = "user repository not found"
+		resp.Msg = "not found"
 		return
 	}
 
