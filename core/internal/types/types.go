@@ -188,10 +188,23 @@ type PublicFileListRequest struct {
 }
 
 type PublicFileListReply struct {
-	Count int64       `json:"count"`
-	List  []*UserFile `json:"list"`
-	Msg   string      `json:"msg"`
-	Code  int         `json:"code"`
+	Count int64         `json:"count"`
+	List  []*PublicFile `json:"list"`
+	Msg   string        `json:"msg"`
+	Code  int           `json:"code"`
+}
+
+type PublicFile struct {
+	Id                 int64  `json:"id"`
+	ParentId           int64  `json:"parent_id"`
+	Identity           string `json:"identity"`
+	RepositoryIdentity string `json:"repository_identity"`
+	Owner              string `json:"owner"`
+	Name               string `json:"name"`
+	Size               int64  `json:"size"`
+	Ext                string `json:"ext"`
+	Path               string `json:"path"`
+	UpdatedAt          string `json:"updated_at"`
 }
 
 type UserFile struct {
