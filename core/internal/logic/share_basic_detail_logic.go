@@ -24,6 +24,7 @@ func NewShareBasicDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 }
 
 func (l *ShareBasicDetailLogic) ShareBasicDetail(req *types.ShareBasicDetailRequest) (resp *types.ShareBasicDetailReply, err error) {
+	// logic：其他用户获取分享文件详情
 	resp = new(types.ShareBasicDetailReply)
 	// 1 更新分享记录的点击次数
 	err = l.svcCtx.Engine.

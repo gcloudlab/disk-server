@@ -14,6 +14,7 @@ type ShareBasic struct {
 	RepositoryIdentity     string
 	ExpiredTime            int
 	ClickNum               int
+	Desc                   string
 	CreatedAt              time.Time      `gorm:"created"`
 	UpdatedAt              time.Time      `gorm:"updated"`
 	DeletedAt              gorm.DeletedAt `gorm:"deleted"`

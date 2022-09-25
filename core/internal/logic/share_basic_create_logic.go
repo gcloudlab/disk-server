@@ -47,6 +47,7 @@ func (l *ShareBasicCreateLogic) ShareBasicCreate(req *types.ShareBasicCreateRequ
 		UserRepositoryIdentity: req.UserRepositoryIdentity,
 		RepositoryIdentity:     usr.RepositoryIdentity,
 		ExpiredTime:            req.ExpiredTime,
+		Desc:                   req.Desc,
 	}
 	err = l.svcCtx.Engine.
 		Select("identity", "user_identity", "repository_identity", "user_repository_identity", "expired_time", "created_at", "updated_at").

@@ -120,6 +120,7 @@ type ShareBasicDetailReply struct {
 type ShareBasicCreateRequest struct {
 	UserRepositoryIdentity string `json:"user_repository_identity"`
 	ExpiredTime            int    `json:"expired_time"`
+	Desc                   string `json:"desc"`
 }
 
 type ShareBasicCreateReply struct {

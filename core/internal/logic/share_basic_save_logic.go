@@ -26,6 +26,7 @@ func NewShareBasicSaveLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Sh
 }
 
 func (l *ShareBasicSaveLogic) ShareBasicSave(req *types.ShareBasicSaveRequest, userIdentity string) (resp *types.ShareBasicSaveReply, err error) {
+	// logic：其他用户保存分享文件
 	resp = new(types.ShareBasicSaveReply)
 	// 获取资源详情 from repository_pool
 	rp := new(models.RepositoryPool)
