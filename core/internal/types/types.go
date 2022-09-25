@@ -175,10 +175,11 @@ type UserFileListRequest struct {
 }
 
 type UserFileListReply struct {
-	Count int64       `json:"count"`
-	List  []*UserFile `json:"list"`
-	Msg   string      `json:"msg"`
-	Code  int         `json:"code"`
+	Count       int64              `json:"count"`
+	List        []*UserFile        `json:"list"`
+	DeletedList []*DeletedUserFile `json:"deleted_list"`
+	Msg         string             `json:"msg"`
+	Code        int                `json:"code"`
 }
 
 type PublicFileListRequest struct {
@@ -217,6 +218,18 @@ type UserFile struct {
 	Ext                string `json:"ext"`
 	Path               string `json:"path"`
 	UpdatedAt          string `json:"updated_at"`
+}
+
+type DeletedUserFile struct {
+	Id                 int64  `json:"id"`
+	ParentId           int64  `json:"parent_id"`
+	Identity           string `json:"identity"`
+	RepositoryIdentity string `json:"repository_identity"`
+	Name               string `json:"name"`
+	Size               int64  `json:"size"`
+	Ext                string `json:"ext"`
+	Path               string `json:"path"`
+	DeletedAt          string `json:"deleted_at"`
 }
 
 type UserRepositorySaveRequest struct {

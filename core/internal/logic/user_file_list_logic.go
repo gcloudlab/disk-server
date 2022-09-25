@@ -27,6 +27,7 @@ func NewUserFileListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *User
 
 func (l *UserFileListLogic) UserFileList(req *types.UserFileListRequest, userIdentity string) (resp *types.UserFileListReply, err error) {
 	usrFile := make([]*types.UserFile, 0)
+	deletedFile := make([]*types.DeletedUserFile, 0)
 	var cnt int64
 	resp = new(types.UserFileListReply)
 
@@ -58,6 +59,20 @@ func (l *UserFileListLogic) UserFileList(req *types.UserFileListRequest, userIde
 		Find(&usrFile).Error
 	// Limit(size).
 	// Offset(offset).
+	if err != nil {
+		resp.Msg = "error"
+		return
+	}
+
+	err = l.svcCtx.Engine.
+		Table("user_repository").
+		Select("user_repository.id, user_repository.parent_id, user_repository.identity, "+
+			"user_repository.repository_identity, user_repository.ext, user_repository.deleted_at,"+
+			"user_repository.name, repository_pool.path, repository_pool.size").
+		Where("user_identity = ? ", userIdentity).
+		Where("user_repository.deleted_at IS NOT NULL").
+		Joins("left join repository_pool on user_repository.repository_identity = repository_pool.identity").
+		Find(&deletedFile).Error
 
 	if err != nil {
 		resp.Msg = "error"
@@ -76,6 +91,7 @@ func (l *UserFileListLogic) UserFileList(req *types.UserFileListRequest, userIde
 	}
 
 	resp.List = usrFile
+	resp.DeletedList = deletedFile
 	resp.Count = cnt
 	resp.Msg = "success"
 	return
