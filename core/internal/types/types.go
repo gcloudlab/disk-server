@@ -91,6 +91,16 @@ type RefreshAuthorizationReply struct {
 	Code         int    `json:"code"`
 }
 
+type ShareStatisticsRequest struct {
+}
+
+type ShareStatisticsReply struct {
+	ShareCount int    `json:"share_count"`
+	ClickNum   int    `json:"click_num"`
+	Msg        string `json:"msg"`
+	Code       int    `json:"code"`
+}
+
 type ShareBasicSaveRequest struct {
 	RepositoryIdentity string `json:"repository_identity"`
 	ParentId           int64  `json:"parent_id"`

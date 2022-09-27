@@ -18,6 +18,10 @@ service core-api {
 	@handler ShareBasicDetail
 	post /share/basic/detail(ShareBasicDetailRequest) returns (ShareBasicDetailReply)
 	
+	// 分享统计
+	@handler ShareStatistics
+	get /share/statistics(ShareStatisticsRequest) returns (ShareStatisticsReply)
+	
 	// 注册量
 	@handler RegisterCount
 	get /register/count(RegisterCountRequest) returns (RegisterCountReply)
@@ -189,6 +193,15 @@ type RefreshAuthorizationReply {
 	RefreshToken string `json:"refresh_token"`
 	Msg          string `json:"msg"`
 	Code         int    `json:"code"`
+}
+
+type ShareStatisticsRequest {
+}
+type ShareStatisticsReply {
+	ShareCount int    `json:"share_count"`
+	ClickNum   int    `json:"click_num"`
+	Msg        string `json:"msg"`
+	Code       int    `json:"code"`
 }
 
 type ShareBasicSaveRequest {

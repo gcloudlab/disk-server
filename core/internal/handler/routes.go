@@ -34,6 +34,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			},
 			{
 				Method:  http.MethodGet,
+				Path:    "/share/statistics",
+				Handler: ShareStatisticsHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodGet,
 				Path:    "/register/count",
 				Handler: RegisterCountHandler(serverCtx),
 			},
