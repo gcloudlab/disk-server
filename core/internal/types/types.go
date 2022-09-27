@@ -107,12 +107,18 @@ type ShareBasicDetailRequest struct {
 }
 
 type ShareBasicDetailReply struct {
+	Identity           string `json:"identity"`
 	RepositoryIdentity string `json:"repository_identity"`
 	Name               string `json:"name"`
+	Owner              string `json:"owner"`
+	Avatar             string `json:"avatar"`
 	Ext                string `json:"ext"`
 	Size               int64  `json:"size"`
 	Path               string `json:"path"`
 	ClickNum           int    `json:"click_num"`
+	ExpiredTime        int    `json:"expired_time"`
+	Desc               string `json:"desc"`
+	UpdatedAt          string `json:"updated_at"`
 	Msg                string `json:"msg"`
 	Code               int    `json:"code"`
 }
@@ -120,7 +126,7 @@ type ShareBasicDetailReply struct {
 type ShareBasicCreateRequest struct {
 	UserRepositoryIdentity string `json:"user_repository_identity"`
 	ExpiredTime            int    `json:"expired_time"`
-	Desc                   string `json:"desc"`
+	Desc                   string `json:"desc,optional"`
 }
 
 type ShareBasicCreateReply struct {

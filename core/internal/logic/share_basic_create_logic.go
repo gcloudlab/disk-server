@@ -37,7 +37,7 @@ func (l *ShareBasicCreateLogic) ShareBasicCreate(req *types.ShareBasicCreateRequ
 		return
 	}
 	if usr.Id == 0 {
-		resp.Msg = "not found"
+		resp.Msg = "user resource not found"
 		return
 	}
 
@@ -50,7 +50,7 @@ func (l *ShareBasicCreateLogic) ShareBasicCreate(req *types.ShareBasicCreateRequ
 		Desc:                   req.Desc,
 	}
 	err = l.svcCtx.Engine.
-		Select("identity", "user_identity", "repository_identity", "user_repository_identity", "expired_time", "created_at", "updated_at").
+		Select("identity", "user_identity", "repository_identity", "user_repository_identity", "expired_time", "desc", "created_at", "updated_at").
 		Create(data).Error
 	if err != nil {
 		resp.Msg = "error"
