@@ -71,6 +71,7 @@ func (l *UserFileListLogic) UserFileList(req *types.UserFileListRequest, userIde
 			"user_repository.name, repository_pool.path, repository_pool.size").
 		Where("user_identity = ? ", userIdentity).
 		Where("user_repository.deleted_at IS NOT NULL").
+		// Order("user_repository.deleted_at desc").
 		Joins("left join repository_pool on user_repository.repository_identity = repository_pool.identity").
 		Find(&deletedFile).Error
 

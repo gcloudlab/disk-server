@@ -91,6 +91,16 @@ type RefreshAuthorizationReply struct {
 	Code         int    `json:"code"`
 }
 
+type PopularShareListRequest struct {
+	ClickNum int `json:"click_num,optional"`
+}
+
+type PopularShareListReply struct {
+	List []*ShareBasicDetailReply `json:"list"`
+	Msg  string                   `json:"msg"`
+	Code int                      `json:"code"`
+}
+
 type ShareStatisticsRequest struct {
 }
 

@@ -33,6 +33,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: ShareBasicDetailHandler(serverCtx),
 			},
 			{
+				Method:  http.MethodPost,
+				Path:    "/popular/share/list",
+				Handler: PopularShareListHandler(serverCtx),
+			},
+			{
 				Method:  http.MethodGet,
 				Path:    "/share/statistics",
 				Handler: ShareStatisticsHandler(serverCtx),

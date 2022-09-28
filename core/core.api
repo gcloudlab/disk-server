@@ -17,6 +17,9 @@ service core-api {
 	// 获取分享资源详情
 	@handler ShareBasicDetail
 	post /share/basic/detail(ShareBasicDetailRequest) returns (ShareBasicDetailReply)
+	// 获取热门分享列表
+	@handler PopularShareList
+	post /popular/share/list(PopularShareListRequest) returns (PopularShareListReply)
 	
 	// 分享统计
 	@handler ShareStatistics
@@ -193,6 +196,15 @@ type RefreshAuthorizationReply {
 	RefreshToken string `json:"refresh_token"`
 	Msg          string `json:"msg"`
 	Code         int    `json:"code"`
+}
+
+type PopularShareListRequest {
+	ClickNum int `json:"click_num,optional"`
+}
+type PopularShareListReply {
+	List []*ShareBasicDetailReply `json:"list"`
+	Msg  string                   `json:"msg"`
+	Code int                      `json:"code"`
 }
 
 type ShareStatisticsRequest {
