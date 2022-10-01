@@ -2,7 +2,6 @@ package logic
 
 import (
 	"context"
-	"errors"
 	"gcloud/core/helper"
 
 	"gcloud/core/internal/svc"
@@ -28,7 +27,8 @@ func NewUserFolderCreateLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 
 func (l *UserFolderCreateLogic) UserFolderCreate(req *types.UserFolderCreateRequest, userIdentity string) (resp *types.UserFolderCreateReply, err error) {
 	if req.Name == "" {
-		return nil, errors.New("name is empty")
+		resp.Msg = "name is empty"
+		return
 	}
 
 	// 判断当前文件名在该层级下是否已存在
@@ -44,7 +44,7 @@ func (l *UserFolderCreateLogic) UserFolderCreate(req *types.UserFolderCreateRequ
 		return
 	}
 	if cnt > 0 {
-		resp.Msg = "文件名已存在"
+		resp.Msg = "exits"
 		return
 	}
 

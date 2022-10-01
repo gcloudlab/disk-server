@@ -105,6 +105,21 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Handler: UserFileDeleteHandler(serverCtx),
 				},
 				{
+					Method:  http.MethodPost,
+					Path:    "/public/file/name/update",
+					Handler: PublicFileNameUpdateHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/public/folder/create",
+					Handler: PublicFolderCreateHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodDelete,
+					Path:    "/public/file/delete",
+					Handler: PublicFileDeleteHandler(serverCtx),
+				},
+				{
 					Method:  http.MethodPut,
 					Path:    "/user/file/move",
 					Handler: UserFileMoveHandler(serverCtx),

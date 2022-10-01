@@ -73,6 +73,18 @@ service core-api {
 	@handler UserFileDelete
 	delete /user/file/delete(UserFileDeleteRequest) returns (UserFileDeleteReply)
 	
+	// 公区 - 文件重命名
+	@handler PublicFileNameUpdate
+	post /public/file/name/update(UserFileNameUpdateRequest) returns (UserFileNameUpdateReply)
+	
+	// 公区 - 文件夹创建
+	@handler PublicFolderCreate
+	post /public/folder/create(UserFolderCreateRequest) returns (UserFolderCreateReply)
+	
+	// 公区 - 文件删除
+	@handler PublicFileDelete
+	delete /public/file/delete(UserFileDeleteRequest) returns (UserFileDeleteReply)
+	
 	// 用户 - 文件移动
 	@handler UserFileMove
 	put /user/file/move(UserFileMoveRequest) returns (UserFileMoveReply)
