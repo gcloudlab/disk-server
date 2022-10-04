@@ -101,6 +101,15 @@ type PopularShareListReply struct {
 	Code int                      `json:"code"`
 }
 
+type UserShareListRequest struct {
+}
+
+type UserShareListReply struct {
+	List []*ShareBasicDetailReply `json:"list"`
+	Msg  string                   `json:"msg"`
+	Code int                      `json:"code"`
+}
+
 type ShareStatisticsRequest struct {
 }
 

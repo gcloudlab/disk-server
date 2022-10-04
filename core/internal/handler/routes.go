@@ -140,6 +140,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Handler: ShareBasicSaveHandler(serverCtx),
 				},
 				{
+					Method:  http.MethodGet,
+					Path:    "/user/share/list",
+					Handler: UserShareListHandler(serverCtx),
+				},
+				{
 					Method:  http.MethodPost,
 					Path:    "/refresh/authorization",
 					Handler: RefreshAuthorizationHandler(serverCtx),

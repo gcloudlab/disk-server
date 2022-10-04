@@ -101,6 +101,10 @@ service core-api {
 	@handler ShareBasicSave
 	post /share/basic/save(ShareBasicSaveRequest) returns (ShareBasicSaveReply)
 	
+	// 分享 - 用户分享资源列表
+	@handler UserShareList
+	get /user/share/list(UserShareListRequest) returns (UserShareListReply)
+	
 	// 刷新token
 	@handler RefreshAuthorization
 	post /refresh/authorization(RefreshAuthorizationRequest) returns (RefreshAuthorizationReply)
@@ -214,6 +218,14 @@ type PopularShareListRequest {
 	ClickNum int `json:"click_num,optional"`
 }
 type PopularShareListReply {
+	List []*ShareBasicDetailReply `json:"list"`
+	Msg  string                   `json:"msg"`
+	Code int                      `json:"code"`
+}
+
+type UserShareListRequest {
+}
+type UserShareListReply {
 	List []*ShareBasicDetailReply `json:"list"`
 	Msg  string                   `json:"msg"`
 	Code int                      `json:"code"`
