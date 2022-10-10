@@ -32,6 +32,12 @@ service core-api {
 	// 公共资源
 	@handler PublicFileList
 	get /public/file/list(PublicFileListRequest) returns (PublicFileListReply)
+	
+	@handler PostsList
+	post /posts/list(PostsListRequest) returns (PostsListReply)
+	
+	@handler PostsComments
+	post /posts/comment(PostsCommentsRequest) returns (PostsCommentsReply)
 }
 
 /****************** File model ***********************/
@@ -124,6 +130,122 @@ service core-api {
 	// 文件分片上传完成
 	@handler FileUploadChunkComplete
 	post /file/upload/chunk/complete(FileUploadChunkCompleteRequest) returns (FileUploadChunkCompleteReply)
+	
+	// 社区模块
+	@handler PostsCreate
+	post /posts/create(PostsCreateRequest) returns (PostsCreateReply)
+	
+	@handler PostsUpdate
+	post /posts/update(PostsUpdateRequest) returns (PostsUpdateReply)
+	
+	@handler PostsDelete
+	delete /posts/delete(PostsDeleteRequest) returns (PostsDeleteReply)
+	
+	@handler PostsCommentCreate
+	post /posts/comment/create(PostsCommentCreateRequest) returns (PostsCommentCreateReply)
+	
+	@handler PostsCommentDelete
+	delete /posts/comment/delete(PostsCommentDeleteRequest) returns (PostsCommentDeleteReply)
+}
+
+type PostsCreateRequest {
+	Title   string `json:"title"`
+	Tags    string `json:"tags,optional"`
+	Content string `json:"content,optional"`
+	Mention string `json:"mention,optional"`
+	Cover   string `json:"cover,optional"`
+}
+type PostsCreateReply {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
+}
+
+type PostsUpdateRequest {
+	Title   string `json:"title,optional"`
+	Tags    string `json:"tags,optional"`
+	Content string `json:"content,optional"`
+	Mention string `json:"mention,optional"`
+	Cover   string `json:"cover,optional"`
+}
+type PostsUpdateReply {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
+}
+
+type PostsDeleteRequest {
+	Identity string `json:"identity"`
+}
+type PostsDeleteReply {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
+}
+
+type PostsCommentCreateRequest {
+	Content       string `json:"content"`
+	Mention       string `json:"mention,optional"`
+	ReplyIdentity string `json:"reply_identity"`
+	PostsIdentity string `json:"posts_identity"`
+}
+type PostsCommentCreateReply {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
+}
+
+type PostsCommentDeleteRequest {
+	Identity string `json:"identity"`
+}
+type PostsCommentDeleteReply {
+	Msg  string `json:"msg"`
+	Code int    `json:"code"`
+}
+
+type PostsListRequest {
+	Id   int64 `json:"id,optional"`
+	Page int   `json:"page,optional"`
+	Size int   `json:"size,optional"`
+}
+type PostsListReply {
+	List []*PostsListItem `json:"list"`
+	Msg  string           `json:"msg"`
+	Code int              `json:"code"`
+}
+type PostsListItem {
+	Identity   string `json:"identity"`
+	Title      string `json:"title"`
+	Tags       string `json:"tags"`
+	Content    string `json:"content"`
+	Mention    string `json:"mention"`
+	Cover      string `json:"cover"`
+	Like       int    `json:"like"`
+	Dislike    int    `json:"dislike"`
+	Collection int    `json:"collection"`
+	ClickNum   int    `json:"click_num"`
+	Owner      string `json:"owner"`
+	UpdatedAt  string `json:"updated_at"`
+}
+
+type PostsCommentsRequest {
+	PostsIdentity string `json:"posts_identity"`
+}
+type PostsCommentsReply {
+	List []*PostsCommentsItem `json:"list"`
+	Msg  string               `json:"msg"`
+	Code int                  `json:"code"`
+}
+type PostsCommentsItem {
+	Identity      string `json:"identity"`
+	ReplyIdentity string `json:"reply_identity"`
+	PostsIdentity string `json:"posts_identity"`
+	PostsName     string `json:"posts_name"`
+	ReplyName     string `json:"reply_name"`
+	Content       string `json:"content"`
+	Mention       string `json:"mention"`
+	Owner         string `json:"owner"`
+	Like          int    `json:"like"`
+	Dislike       int    `json:"dislike"`
+	UpdatedAt     string `json:"updated_at"`
+	Msg           string `json:"msg"`
+	Code          int    `json:"code"`
 }
 
 type FileDownloadRequest {

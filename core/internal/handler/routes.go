@@ -52,6 +52,16 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/public/file/list",
 				Handler: PublicFileListHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/posts/list",
+				Handler: PostsListHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/posts/comment",
+				Handler: PostsCommentsHandler(serverCtx),
+			},
 		},
 	)
 
@@ -168,6 +178,31 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Method:  http.MethodPost,
 					Path:    "/file/upload/chunk/complete",
 					Handler: FileUploadChunkCompleteHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/posts/create",
+					Handler: PostsCreateHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/posts/update",
+					Handler: PostsUpdateHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodDelete,
+					Path:    "/posts/delete",
+					Handler: PostsDeleteHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/posts/comment/create",
+					Handler: PostsCommentCreateHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodDelete,
+					Path:    "/posts/comment/delete",
+					Handler: PostsCommentDeleteHandler(serverCtx),
 				},
 			}...,
 		),
