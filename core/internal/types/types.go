@@ -36,6 +36,28 @@ type PostsDeleteReply struct {
 	Code int    `json:"code"`
 }
 
+type PostsDetailRequest struct {
+	Identity string `json:"identity"`
+}
+
+type PostsDetailReply struct {
+	Identity   string `json:"identity"`
+	Title      string `json:"title"`
+	Tags       string `json:"tags"`
+	Content    string `json:"content"`
+	Mention    string `json:"mention"`
+	Cover      string `json:"cover"`
+	Like       int    `json:"like"`
+	Dislike    int    `json:"dislike"`
+	Collection int    `json:"collection"`
+	ClickNum   int    `json:"click_num"`
+	Owner      string `json:"owner"`
+	Avatar     string `json:"avatar"`
+	UpdatedAt  string `json:"updated_at"`
+	Msg        string `json:"msg"`
+	Code       int    `json:"code"`
+}
+
 type PostsCommentCreateRequest struct {
 	Content       string `json:"content"`
 	Mention       string `json:"mention,optional"`
@@ -81,6 +103,7 @@ type PostsListItem struct {
 	Collection int    `json:"collection"`
 	ClickNum   int    `json:"click_num"`
 	Owner      string `json:"owner"`
+	Avatar     string `json:"avatar"`
 	UpdatedAt  string `json:"updated_at"`
 }
 
@@ -103,6 +126,7 @@ type PostsCommentsItem struct {
 	Content       string `json:"content"`
 	Mention       string `json:"mention"`
 	Owner         string `json:"owner"`
+	Avatar        string `json:"avatar"`
 	Like          int    `json:"like"`
 	Dislike       int    `json:"dislike"`
 	UpdatedAt     string `json:"updated_at"`
