@@ -36,6 +36,7 @@ func (l *UserFileNameUpdateLogic) UserFileNameUpdate(req *types.UserFileNameUpda
 		Table("user_repository").
 		Where("name = ?", req.Name).
 		Where("parent_id = (select parent_id from user_repository ur where ur.identity = ?)", req.Identity).
+		Where("deleted_at IS NULL").
 		Count(&cnt).Error
 
 	if err != nil {
