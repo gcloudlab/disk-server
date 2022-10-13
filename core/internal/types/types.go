@@ -15,11 +15,12 @@ type PostsCreateReply struct {
 }
 
 type PostsUpdateRequest struct {
-	Title   string `json:"title,optional"`
-	Tags    string `json:"tags,optional"`
-	Content string `json:"content,optional"`
-	Mention string `json:"mention,optional"`
-	Cover   string `json:"cover,optional"`
+	Identity string `json:"identity"`
+	Title    string `json:"title,optional"`
+	Tags     string `json:"tags,optional"`
+	Content  string `json:"content,optional"`
+	Mention  string `json:"mention,optional"`
+	Cover    string `json:"cover,optional"`
 }
 
 type PostsUpdateReply struct {
