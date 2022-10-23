@@ -62,8 +62,9 @@ type PostsDetailReply struct {
 type PostsCommentCreateRequest struct {
 	Content       string `json:"content"`
 	Mention       string `json:"mention,optional"`
-	ReplyIdentity string `json:"reply_identity"`
+	ReplyIdentity string `json:"reply_identity,optional"`
 	PostsIdentity string `json:"posts_identity"`
+	ReplyName     string `json:"reply_name,optional"`
 }
 
 type PostsCommentCreateReply struct {
@@ -105,6 +106,7 @@ type PostsListItem struct {
 	ClickNum   int    `json:"click_num"`
 	Owner      string `json:"owner"`
 	Avatar     string `json:"avatar"`
+	ReplyNum   int    `json:"reply_num"`
 	UpdatedAt  string `json:"updated_at"`
 }
 
@@ -127,6 +129,7 @@ type PostsCommentsItem struct {
 	Content       string `json:"content"`
 	Mention       string `json:"mention"`
 	Owner         string `json:"owner"`
+	OwnerIdentity string `json:"owner_identity"`
 	Avatar        string `json:"avatar"`
 	Like          int    `json:"like"`
 	Dislike       int    `json:"dislike"`
