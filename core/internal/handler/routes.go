@@ -67,6 +67,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/posts/detail",
 				Handler: PostsDetailHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/gongde/update",
+				Handler: GongDeUpdateHandler(serverCtx),
+			},
 		},
 	)
 

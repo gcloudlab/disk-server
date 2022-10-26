@@ -41,6 +41,9 @@ service core-api {
 	
 	@handler PostsDetail
 	post /posts/detail(PostsDetailRequest) returns (PostsDetailReply)
+	
+	@handler GongDeUpdate
+	post /gongde/update(GongDeUpdateRequest) returns (GongDeUpdateReply)
 }
 
 /****************** File model ***********************/
@@ -149,6 +152,15 @@ service core-api {
 	
 	@handler PostsCommentDelete
 	delete /posts/comment/delete(PostsCommentDeleteRequest) returns (PostsCommentDeleteReply)
+}
+
+type GongDeUpdateRequest {
+	CurrentCount int `json:"current_count"`
+}
+type GongDeUpdateReply {
+	Count int    `json:"count"`
+	Msg   string `json:"msg"`
+	Code  int    `json:"code"`
 }
 
 type PostsCreateRequest {
