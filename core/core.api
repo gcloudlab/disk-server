@@ -152,6 +152,21 @@ service core-api {
 	
 	@handler PostsCommentDelete
 	delete /posts/comment/delete(PostsCommentDeleteRequest) returns (PostsCommentDeleteReply)
+	
+	@handler PostsFeedbackCreate
+	post /posts/feedback/create(PostsFeedbackCreateRequest) returns (PostsFeedbackCreateReply)
+}
+
+type PostsFeedbackCreateRequest {
+	Type          string `json:"type"`
+	PostsIdentity string `json:"posts_identity"`
+}
+type PostsFeedbackCreateReply {
+	Ilike   int    `json:"ilike"`
+	Dislike int    `json:"dislike"`
+	Collect int    `json:"collect"`
+	Msg     string `json:"msg"`
+	Code    int    `json:"code"`
 }
 
 type GongDeUpdateRequest {
@@ -206,7 +221,7 @@ type PostsDetailReply {
 	Content    string `json:"content"`
 	Mention    string `json:"mention"`
 	Cover      string `json:"cover"`
-	Like       int    `json:"like"`
+	Ilike      int    `json:"ilike"`
 	Dislike    int    `json:"dislike"`
 	Collection int    `json:"collection"`
 	ClickNum   int    `json:"click_num"`
@@ -248,20 +263,17 @@ type PostsListReply {
 	Code int              `json:"code"`
 }
 type PostsListItem {
-	Identity   string `json:"identity"`
-	Title      string `json:"title"`
-	Tags       string `json:"tags"`
-	Content    string `json:"content"`
-	Mention    string `json:"mention"`
-	Cover      string `json:"cover"`
-	Like       int    `json:"like"`
-	Dislike    int    `json:"dislike"`
-	Collection int    `json:"collection"`
-	ClickNum   int    `json:"click_num"`
-	Owner      string `json:"owner"`
-	Avatar     string `json:"avatar"`
-	ReplyNum   int    `json:"reply_num"`
-	UpdatedAt  string `json:"updated_at"`
+	Identity  string `json:"identity"`
+	Title     string `json:"title"`
+	Tags      string `json:"tags"`
+	Content   string `json:"content"`
+	Mention   string `json:"mention"`
+	Cover     string `json:"cover"`
+	ClickNum  int    `json:"click_num"`
+	Owner     string `json:"owner"`
+	Avatar    string `json:"avatar"`
+	ReplyNum  int    `json:"reply_num"`
+	UpdatedAt string `json:"updated_at"`
 }
 
 type PostsCommentsRequest {

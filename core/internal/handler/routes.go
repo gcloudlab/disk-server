@@ -214,6 +214,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Path:    "/posts/comment/delete",
 					Handler: PostsCommentDeleteHandler(serverCtx),
 				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/posts/feedback/create",
+					Handler: PostsFeedbackCreateHandler(serverCtx),
+				},
 			}...,
 		),
 	)
