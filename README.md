@@ -20,7 +20,6 @@
 - ✨ 纯 Go 开发（后端）
 - 👻 用户隐私安全
 - 🎨 **不限速**
-- ...
 
 详见文档 [API](/docs/API.md).
 
@@ -39,9 +38,28 @@
 ### 开发环境
 
 Windows 11 with vscode，go module
+
 ## 共建者
 
-<a href="https://github.com/yesmore"><img src="https://github.com/yesmore.png?size=50"></a> <a href="https://github.com/tinyflake"><img src="https://github.com/tinyflake.png?size=50"></a> <a href="https://github.com/lysimportant"><img src="https://github.com/lysimportant.png?size=50"></a>
+<div style="display:flex">
+<a href='https://github.com/yesmore'>
+ <code><img width='40px' src='https://avatars.githubusercontent.com/u/89140804?v=4' alt=''/></code></a>
+&nbsp;
+<a href='https://github.com/tinyflake'>
+ <code><img width='40px' src='https://avatars.githubusercontent.com/u/87841684?v=4' alt=''/></code></a>
+</div>
+
+## 请我吃辣条
+
+<p align="center">
+  <table border="0">
+    <tr>
+        <th  align="center"><img width='200px' src='https://cdn.jsdelivr.net/gh/yesmore/img/img/81E3D2890C073A52E045D9E49457C3ED.jpg' alt='wx'/> <p>微信</p> </th>
+        <th align="center"><img width='200px' src='https://cdn.jsdelivr.net/gh/yesmore/img/img/849E2934286ACA620B988C523AEBC92B.jpg' alt='zfb'/> <p>支付宝</p> </th>
+    </tr>    
+  </table>
+</p>
+
 
 ## License
 
