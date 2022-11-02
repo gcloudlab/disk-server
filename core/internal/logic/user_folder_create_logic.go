@@ -35,7 +35,7 @@ func (l *UserFolderCreateLogic) UserFolderCreate(req *types.UserFolderCreateRequ
 	var cnt int64
 	err = l.svcCtx.Engine.
 		Table("user_repository").
-		Where("name = ? AND parent_id = ? AND user_identity = ?", req.Name, req.ParentId, userIdentity).
+		Where("name = ? AND parent_id = ? AND user_identity = ? AND deleted_at IS NULL", req.Name, req.ParentId, userIdentity).
 		Count(&cnt).Error
 
 	resp = new(types.UserFolderCreateReply)
