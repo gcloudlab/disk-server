@@ -43,7 +43,7 @@ func (l *PublicFileSaveLogic) PublicFileSave(req *types.PublicRepositorySaveRequ
 	l.svcCtx.Engine.
 		Table("public_repository").
 		Select("sum(repository_pool.size) as total_size").
-		Where("public_repository.public_identity = ? AND public_repository.deleted_at IS NULL", UserIdentity).
+		Where("public_repository.user_identity = ? AND public_repository.deleted_at IS NULL", UserIdentity).
 		Joins("left join repository_pool on public_repository.repository_identity = repository_pool.identity").
 		Take(&Size)
 	if UserIdentity != "USER_1" && Size.TotalSize >= define.PublicRepositoryMaxSize {
