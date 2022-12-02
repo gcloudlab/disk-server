@@ -70,7 +70,7 @@ func (l *UserRegisterLogic) UserRegister(req *types.UserRegisterRequest) (resp *
 		Email:    req.Email,
 		Avatar:   define.AvatarBaseUrl + helper.Random() + ".png",
 		Password: helper.Md5(req.Password),
-		Capacity: define.UserRepositoryMaxSize,
+		Capacity: define.UserRepositoryMinSize,
 	}
 	// fix: 需指定添加字段 (Select())，不推荐使用 Omit()
 	err = l.svcCtx.Engine.
