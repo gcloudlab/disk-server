@@ -5,3 +5,4 @@
 *.chunk
 
 nohup.out
+/core/core
