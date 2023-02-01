@@ -47,6 +47,7 @@ CREATE TABLE `share_basic` (
   `user_repository_identity` varchar(36) DEFAULT NULL COMMENT '用户池子中的唯一标识',
   `expired_time` int(11) DEFAULT NULL COMMENT '失效时间，单位秒, 【0-永不失效】',
   `click_num` int(11) DEFAULT '0' COMMENT '点击次数',
+  `desc` varchar(36) DEFAULT NULL
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
@@ -63,6 +64,8 @@ CREATE TABLE `user_basic` (
   `name` varchar(60) DEFAULT NULL,
   `password` varchar(32) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
+  `avatar` varchar(100) DEFAULT NULL
+  `capacity` int(11) DEFAULT NULL
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
@@ -81,6 +84,84 @@ CREATE TABLE `user_repository` (
   `repository_identity` varchar(36) DEFAULT NULL,
   `ext` varchar(255) DEFAULT NULL COMMENT '文件或文件夹类型',
   `name` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for public_repository
+-- ----------------------------
+DROP TABLE IF EXISTS `public_repository`;
+CREATE TABLE `public_repository` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `identity` varchar(36) DEFAULT NULL,
+  `user_identity` varchar(36) DEFAULT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `repository_identity` varchar(36) DEFAULT NULL,
+  `ext` varchar(255) DEFAULT NULL COMMENT '文件或文件夹类型',
+  `name` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for posts_basic
+-- ----------------------------
+DROP TABLE IF EXISTS `posts_basic`;
+CREATE TABLE `posts_basic` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `identity` varchar(36) DEFAULT NULL,
+  `user_identity` varchar(36) DEFAULT NULL,
+  `click_num` int(11) DEFAULT '0' COMMENT '点击次数',
+  `title` varchar(36) DEFAULT NULL,
+  `tags` varchar(255) DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `mention` varchar(255) DEFAULT NULL,
+  `cover` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for posts_comment_basic
+-- ----------------------------
+DROP TABLE IF EXISTS `posts_comment_basic`;
+CREATE TABLE `posts_comment_basic` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `identity` varchar(36) DEFAULT NULL,
+  `user_identity` varchar(36) DEFAULT NULL,
+  `posts_identity` varchar(36) DEFAULT NULL,
+  `reply_identity` varchar(36) DEFAULT NULL,
+  `reply_name` varchar(36) DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `mention` varchar(255) DEFAULT NULL,
+  `like1` int(11) DEFAULT '0',
+  `dislike` int(11) DEFAULT '0',
+  `read` int(11) DEFAULT '0',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for posts_fb
+-- ----------------------------
+DROP TABLE IF EXISTS `posts_fb`;
+CREATE TABLE `posts_fb` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `identity` varchar(36) DEFAULT NULL,
+  `user_identity` varchar(36) DEFAULT NULL,
+  `posts_identity` varchar(36) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `count` int(11) DEFAULT '0',
+  `read` int(11) DEFAULT '0',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
