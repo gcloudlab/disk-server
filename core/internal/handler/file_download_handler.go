@@ -20,7 +20,7 @@ func FileDownloadHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 		}
 
 		rp := new(models.RepositoryPool)
-		// https://gcloud-1303456836.cos.ap-chengdu.myqcloud.com/gcloud/
+		// https://gcloud-1303456836.cos.ap-chengdu.myqcloud.com/
 		svcCtx.Engine.
 			Where("path = ?", req.Path).
 			First(rp)

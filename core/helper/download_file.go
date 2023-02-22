@@ -10,7 +10,6 @@ import (
 	"github.com/tencentyun/cos-go-sdk-v5"
 )
 
-// CosUpload 上传文件到腾讯云
 func CosDownload(r *http.Request, dowload_path string, fileName string) ([]byte, error) {
 	u, _ := url.Parse(define.CosBucket)
 	b := &cos.BaseURL{BucketURL: u}
