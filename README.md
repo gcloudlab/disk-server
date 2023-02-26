@@ -13,21 +13,6 @@
 
 <img  src='https://raw.githubusercontents.com/yesmore/img/main/gcloud/gcloud-app.png'/>
 
-<img src='https://raw.githubusercontents.com/yesmore/img/master/gcloud/gcloud-pc-c.png'/>
-
-<img src='https://raw.githubusercontents.com/yesmore/img/master/gcloud/gcloud-pc-signin.png'/>
-
-<table style="border:none">
-<tr>
-<td align='center'><img src='https://raw.githubusercontents.com/yesmore/img/master/gcloud/gcloud-mobile-posts.png'/></td>
-<td align='center'><img  src='https://raw.githubusercontents.com/yesmore/img/master/gcloud/gcloud-mobile-signin.png'/></td>
-</tr>
-<tr>
-<td align='center'><img  src='https://raw.githubusercontents.com/yesmore/img/master/gcloud/gcloud-mobile-home.png'/></td>
-<td align='center'><img src='https://raw.githubusercontents.com/yesmore/img/master/gcloud/gcloud-mobile-c.png'/></td>
-</tr>
-</table>
-
 ## 功能特性
 
 - 🎯 支持邮箱注册，安全保障
@@ -45,7 +30,7 @@
 
 ### 开发手册
 
-详见 [GCloud 开发手册](/dev/README.md).
+详见 [GCloud 开发手册](/docs/README.md).
 
 ### 技术架构
 
