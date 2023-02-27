@@ -42,6 +42,14 @@
 
 Windows 11 with vscode，go module
 
+### Docker 部署
+
+```bash
+docker build . -t yesmore/disk
+
+docker run -p 20088:20088 yesmore/disk
+```
+
 ## 共建者
 
 <div style="display:flex">
