@@ -20,8 +20,6 @@ WORKDIR /app
 COPY --from=builder /app/app .
 COPY core /app
 
-ENV MySQLPassword=5304997
-
 EXPOSE 20088
 
 CMD ["./app"]
