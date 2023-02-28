@@ -16,7 +16,7 @@ type UserClaim struct {
 }
 
 var JwtKey = "gcloud-key"
-var MailPassword = os.Getenv("MailPassword")
+var MailPassword = os.Getenv("MAIL_PASSWORD")
 var RedisPassword = os.Getenv("REDIS_PASSWORD")
 var MySQLPassword = os.Getenv("MYSQL_PASSWORD")
 
@@ -27,8 +27,8 @@ var CodeLength = 6
 var CodeExpire = 300
 
 // TencentSecretKey 腾讯云对象存储
-var TencentSecretKey = os.Getenv("TencentSecretKey")
-var TencentSecretID = os.Getenv("TencentSecretID")
+var TencentSecretKey = os.Getenv("TENCENT_SECRETKEY")
+var TencentSecretID = os.Getenv("TENCENT_SECRETID")
 var CosBucket = "https://gcloud-1303456836.cos.ap-chengdu.myqcloud.com"
 var CosFolderName = "gcloud"
 var AvatarBaseUrl = CosBucket + "/" + CosFolderName + "/avatars/"

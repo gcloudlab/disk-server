@@ -35,5 +35,6 @@ func main() {
 }
 
 func notAllowedFn(w http.ResponseWriter) {
+	w.Header().Add("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
 	w.Header().Add("Access-Control-Allow-Headers", "DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,token, access-control-allow-origin-type")
 }
