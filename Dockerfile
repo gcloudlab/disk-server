@@ -23,6 +23,4 @@ COPY core /app
 # for Back4App 
 EXPOSE 20088
 
-RUN env
-
 CMD ["./app"]
