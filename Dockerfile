@@ -20,6 +20,11 @@ WORKDIR /app
 COPY --from=builder /app/app .
 COPY core /app
 
+# for Back4App 
 EXPOSE 20088
+
+ENV MYSQL_PASSWORD=123456
+RUN ls -a
+RUN env
 
 CMD ["./app"]
