@@ -1,8 +1,0 @@
-.vscode
-.idea
-
-*.mp4
-*.chunk
-
-nohup.out
-/core/core
