@@ -9,6 +9,13 @@
 
 `GCloud` 是使用 Vue3 + [Go](https://golang.org/)（后端）开发的云盘应用，具备云盘的基本功能，且开源免费。
 
+> 更新：为方便开发时调试，已部署后端接口供开发者本地调试使用，无需关心跨域等配置，直接上手开发前端；可以使用此接口开发其他项目，不保障稳定性~
+> 
+> 接口地址：[https://gcloud-3224266014.b4a.run](https://gcloud-3224266014.b4a.run)
+
+> **Warning**
+> 禁止使用此接口从事违法犯罪活动
+
 ## 应用截图
 
 <img  src='https://raw.githubusercontents.com/yesmore/img/main/gcloud/gcloud-app.png'/>
@@ -42,15 +49,22 @@
 
 Windows 11 with vscode，go module
 
-## 共建者
+### Docker 部署
+
+```bash
+docker build . -t disk
+
+docker run -p 20088:20088 disk
+```
+
+## 参与贡献
 
 <div style="display:flex">
 <a href='https://github.com/yesmore'>
  <code><img width='40px' src='https://avatars.githubusercontent.com/u/89140804?v=4' alt=''/></code></a>
-&nbsp;
-<a href='https://github.com/tinyflake'>
- <code><img width='40px' src='https://avatars.githubusercontent.com/u/87841684?v=4' alt=''/></code></a>
 </div>
+
+欢迎pr~
 
 ## 请我吃辣条
 
