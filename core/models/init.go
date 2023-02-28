@@ -30,7 +30,7 @@ func Init(dataSource string) *gorm.DB {
 */
 func InitRedis(c config.Config) *redis.Client {
 	return redis.NewClient(&redis.Options{
-		Addr:     c.Redis.Addr,
+		Addr:     define.RedisAddr,     // or c.Redis.Addr
 		Password: define.RedisPassword, // no password set
 		DB:       0,                    // use default DB
 	})

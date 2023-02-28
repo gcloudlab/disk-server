@@ -18,6 +18,7 @@ type UserClaim struct {
 var JwtKey = "gcloud-key"
 var MailPassword = os.Getenv("MAIL_PASSWORD")
 var RedisPassword = os.Getenv("REDIS_PASSWORD")
+var RedisAddr = os.Getenv("REDIS_ADDR")
 var MySQLPassword = os.Getenv("MYSQL_PASSWORD")
 
 // CodeLength 验证码长度

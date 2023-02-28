@@ -9,7 +9,7 @@ Mysql:
   DataSource: root:root@tcp(127.0.0.1:3306)/gcloud?charset=utf8mb4&parseTime=True&loc=Local
 
 Redis:
-  Addr: 81.69.202.167:6379 # for default, set 127.0.0.1
+  Addr: 127.0.0.1:6379 # for default, set 127.0.0.1
 
 MsgRpc:
   Etcd:
