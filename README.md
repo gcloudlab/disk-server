@@ -64,8 +64,6 @@ docker run -p 20088:20088 disk
  <code><img width='40px' src='https://avatars.githubusercontent.com/u/89140804?v=4' alt=''/></code></a>
 </div>
 
-欢迎pr~
-
 ## 请我吃辣条
 
 <p align="center">
