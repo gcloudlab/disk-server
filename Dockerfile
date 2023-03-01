@@ -9,5 +9,7 @@ ENV MYSQL_DATABASE=gcloud \
 # 复制初始化脚本到容器中
 COPY ./init.sql /docker-entrypoint-initdb.d/
 
+EXPOSE 3306
+
 # 容器启动时运行初始化脚本
 CMD ["--init-file", "/docker-entrypoint-initdb.d/init.sql"]
