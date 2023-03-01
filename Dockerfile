@@ -20,7 +20,7 @@ RUN echo "Asia/Shanghai" > /etc/timezone
 
 # Install MySQL
 RUN apt-get update && \
-  apt-get install -y mysql-server && \
+  apt-get install -y mysql-server=5.7* && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
