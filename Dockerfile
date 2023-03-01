@@ -6,7 +6,7 @@ ENV MYSQL_DATABASE=gcloud \
   MYSQL_PASSWORD=123456 \
   MYSQL_ROOT_PASSWORD=123456
 
-# 复制初始化脚本到容器中
 COPY ./init.sql /docker-entrypoint-initdb.d/
+COPY mysql.cnf /etc/mysql/mysql.conf.d/mysql.cnf
 
-CMD ["--init-file", "/docker-entrypoint-initdb.d/init.sql", "--port=3306", "--bind-address=0.0.0.0"]
+EXPOSE 3306
