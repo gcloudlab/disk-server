@@ -12,4 +12,4 @@ COPY ./init.sql /docker-entrypoint-initdb.d/
 EXPOSE 3306
 
 # 容器启动时运行初始化脚本
-CMD ["--init-file", "/docker-entrypoint-initdb.d/init.sql"]
+CMD ["mysqld", "--user=mysql", "--console", "--init-file", "/docker-entrypoint-initdb.d/init.sql"]
